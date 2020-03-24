@@ -1,13 +1,13 @@
-import Sessions from "views/sessions/Sessions.jsx";
+import Analytics from "pages/0Analytics/Analytics.jsx";
 import Login from "views/pages/Login.jsx";
 import Register from "views/pages/Register.jsx";
 
 const routes = [
   {
-    path: "/sessions",
-    name: "Sessions",
+    path: "/analytics",
+    name: "Analytics",
     icon: "nc-icon nc-bullet-list-67",
-    component: Sessions,
+    component: Analytics,
     layout: "/project"
   },
   {
