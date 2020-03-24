@@ -1,4 +1,5 @@
 import Analytics from "pages/0Analytics/Analytics.jsx";
+import Guides from "pages/1Guides/Guides.jsx";
 import Login from "views/pages/Login.jsx";
 import Register from "views/pages/Register.jsx";
 
@@ -6,8 +7,15 @@ const routes = [
   {
     path: "/analytics",
     name: "Analytics",
-    icon: "nc-icon nc-bullet-list-67",
+    icon: "nc-icon nc-layout-11",
     component: Analytics,
+    layout: "/project"
+  },
+  {
+    path: "/guides",
+    name: "Guides",
+    icon: "nc-icon nc-bullet-list-67",
+    component: Guides,
     layout: "/project"
   },
   {
