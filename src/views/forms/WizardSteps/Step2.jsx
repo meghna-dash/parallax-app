@@ -21,7 +21,9 @@ class Wizard extends React.Component {
   render() {
     return (
       <>
-        <h5 className="info-text">What are you doing? (checkboxes)</h5>
+        <h5 className="info-text">
+          Which routes would you like to show this guide on?
+        </h5>
         <Row className="justify-content-center">
           <Col lg="10">
             <Row>

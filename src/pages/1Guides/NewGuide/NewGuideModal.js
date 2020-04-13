@@ -1,9 +1,27 @@
 import React, { Component } from "react";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import GuideStepper from './GuideStepper.js';
-import Upload from './0Upload.jsx';
-import Routes from './1Routes.jsx';
-import Finish from './2Finish.jsx';
+import ReactWizard from "react-bootstrap-wizard";
+import { Col, Modal } from "reactstrap";
+import Step1 from "./WizardSteps/Step1.jsx";
+import Step2 from "./WizardSteps/Step2.jsx";
+import Step3 from "./WizardSteps/Step3.jsx";
+
+var steps = [
+  {
+    stepName: "Upload",
+    stepIcon: "nc-icon nc-laptop",
+    component: Step1
+  },
+  {
+    stepName: "Routes",
+    stepIcon: "nc-icon nc-paper",
+    component: Step2
+  },
+  {
+    stepName: "Finish",
+    stepIcon: "nc-icon nc-button-play",
+    component: Step3
+  }
+];
 
 class NewGuideModal extends Component {
   constructor() {
@@ -28,50 +46,24 @@ class NewGuideModal extends Component {
     })
   }
 
-  showStep = () => {
-    if(this.state.step === 0) {
-      return (<Upload onFileChange={this.onFileChange}/>);
-    }
-    if(this.state.step === 1) {
-      return (<Routes />);
-    }
-    if(this.state.step === 2) {
-      return (<Finish />);
-    }
-  }
-
   render() {
     return (
-      <div>
-        <Modal
-          isOpen={this.props.modal}
-          toggle={this.props.toggleModal}
-        >
-          <ModalHeader
-            toggle={this.props.toggleModal}
-          >
-            Create New Guide
-          </ModalHeader>
-          <GuideStepper
-            step={this.state.step}
-          />
-          <ModalBody>
-            {this.showStep()}
-          </ModalBody>
-          <ModalFooter>
-            <Button
-              className="btn-icon"
-              color="success"
-              id="edit-tooltip"
-              size="sm"
-              type="button"
-              onClick={this.nextStep}
-            >
-              <i className="fa fa-chevron-right" />
-            </Button>
-          </ModalFooter>
-        </Modal>
-      </div>
+      <Modal
+        isOpen={this.props.modal}
+        toggle={this.props.toggleModal}
+      >
+        <ReactWizard
+          steps={steps}
+          navSteps
+          validate
+          title="Create New Guide"
+          description="Teach your users how to use your app using guides"
+          headerTextCenter
+          finishButtonClasses="btn-wd"
+          nextButtonClasses="btn-wd"
+          previousButtonClasses="btn-wd"
+        />
+    </Modal>
     );
   }
 }

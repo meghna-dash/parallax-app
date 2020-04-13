@@ -11,7 +11,9 @@ class Wizard extends React.Component {
       <>
         <Row className="justify-content-center">
           <Col sm="12">
-            <h5 className="info-text">Are you living in a nice area?</h5>
+            <h5 className="info-text">
+              Are you living in a nice area?
+            </h5>
           </Col>
           <Col sm="7">
             <FormGroup>

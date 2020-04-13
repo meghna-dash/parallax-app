@@ -1,15 +1,23 @@
-import React, { Component } from "react";
+import React from "react";
 import classnames from "classnames";
+
+// reactstrap components
 import { Row, Col } from "reactstrap";
 
-class Routes extends Component {
+class Wizard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      allRoutes: true,
-    }
+      allRoutes: false,
+      code: false,
+      develop: false
+    };
   }
-
+  clickChoice = choiceName => {
+    this.setState({
+      [choiceName]: !this.state[choiceName]
+    });
+  };
   render() {
     return (
       <>
@@ -24,6 +32,8 @@ class Routes extends Component {
               <Col sm="4">
                 <div
                   className={classnames("choice", { active: this.state.allRoutes })}
+                  data-toggle="wizard-checkbox"
+                  onClick={() => this.clickChoice("allRoutes")}
                 >
                   <input
                     defaultValue="All Routes"
@@ -47,4 +57,4 @@ class Routes extends Component {
   }
 }
 
-export default Routes;
+export default Wizard;

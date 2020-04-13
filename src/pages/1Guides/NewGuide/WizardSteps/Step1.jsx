@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import classnames from "classnames";
-import FileUpload from './FileUpload';
+import FileUpload from '../FileUpload';
 import {
   Input,
   InputGroupAddon,
@@ -10,7 +10,7 @@ import {
   Col
 } from "reactstrap";
 
-class Upload extends Component {
+class Wizard extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -35,4 +35,4 @@ class Upload extends Component {
   }
 }
 
-export default Upload;
+export default Wizard;
