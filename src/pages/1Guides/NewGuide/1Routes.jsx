@@ -1,14 +1,17 @@
 import React, { Component } from "react";
-import GuidesTable from "./GuidesTable";
 
-class Guides extends Component {
+class Routes extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div className="content">
-        <GuidesTable />
+        ROUTES
       </div>
     );
   }
 }
 
-export default Guides;
+export default Routes;
