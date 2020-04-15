@@ -16,8 +16,8 @@ import {
   Col,
   Row
 } from "reactstrap";
-// import { Auth } from "aws-amplify";
-// import { withRouter } from "react-router-dom";
+import { Auth } from "aws-amplify";
+import { withRouter } from "react-router-dom";
 
 class Login extends Component {
   constructor(props) {
@@ -42,20 +42,20 @@ class Login extends Component {
     })
   }
 
-  // async handleSignIn(event) {
-  //   event.preventDefault();
-  //   try {
-  //     await Auth.signIn(this.state.email, this.state.password)
-  //     .then(user => sessionStorage.setItem("userID", user.username))
-  //     // .then(user => this.props.updateAuthenticationState(true))
-  //     .then(user => this.props.history.push("/project/sessions"))
-  //   } catch (error) {
-  //     this.setState({
-  //       message: error.message,
-  //     })
-  //     console.log(error.message);
-  //   }
-  // }
+  async handleSignIn(event) {
+    event.preventDefault();
+    try {
+      await Auth.signIn(this.state.email, this.state.password)
+      .then(user => sessionStorage.setItem("userID", user.username))
+      // .then(user => this.props.updateAuthenticationState(true))
+      .then(user => this.props.history.push("/project/sessions"))
+    } catch (error) {
+      this.setState({
+        message: error.message,
+      })
+      console.log(error.message);
+    }
+  }
 
   componentDidMount() {
     document.body.classList.toggle("login-page");

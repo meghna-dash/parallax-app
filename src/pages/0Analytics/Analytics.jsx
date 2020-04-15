@@ -1,10 +1,32 @@
 import React, { Component } from "react";
+import { Card, Col, Row } from 'reactstrap';
+import GuideViewsGraph from './GuideViewsGraph';
+import NewUserEngagement from './NewUserEngagement';
+import GuidesTable from '../1Guides/GuidesTable';
 
 class Sessions extends Component {
   render() {
     return (
       <div className="content">
-        hello panda
+        <row>
+          <Col lg="8">
+            <GuideViewsGraph />
+          </Col>
+          <Col lg="4">
+            <NewUserEngagement />
+          </Col>
+        </row>
+        <row>
+          <Col lg="4">
+            <GuidesTable />
+          </Col>
+          <Col lg="4">
+            <Card />
+          </Col>
+          <Col lg="4">
+            <Card />
+          </Col>
+        </row>
       </div>
     );
   }

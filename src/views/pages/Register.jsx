@@ -17,7 +17,7 @@ import {
   Row,
   Col
 } from "reactstrap";
-// import { Auth } from "aws-amplify";
+import { Auth } from "aws-amplify";
 
 class Register extends Component {
   constructor(props) {
@@ -51,24 +51,24 @@ class Register extends Component {
     })
   }
 
-  // async handleSignUp(event) {
-  //   event.preventDefault();
-  //
-  //   try {
-  //     const newUser = await Auth.signUp({
-  //       username: this.state.email,
-  //       password: this.state.password,
-  //     })
-  //     this.setState({
-  //       shouldVerify: true,
-  //     })
-  //   } catch (error) {
-  //     this.setState({
-  //       message: error.message,
-  //     })
-  //     console.log(error.message);
-  //   }
-  // }
+  async handleSignUp(event) {
+    event.preventDefault();
+
+    try {
+      const newUser = await Auth.signUp({
+        username: this.state.email,
+        password: this.state.password,
+      })
+      this.setState({
+        shouldVerify: true,
+      })
+    } catch (error) {
+      this.setState({
+        message: error.message,
+      })
+      console.log(error.message);
+    }
+  }
 
   handleVerificationCodeChange(event) {
     this.setState({
@@ -76,16 +76,16 @@ class Register extends Component {
     })
   }
 
-  // async confirmNewUser(event) {
-  //   event.preventDefault();
-  //   try {
-  //     await Auth.confirmSignUp(this.state.email, this.state.verificationCode);
-  //     await Auth.signIn(this.state.email, this.state.password);
-  //     console.log("Logged in");
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // }
+  async confirmNewUser(event) {
+    event.preventDefault();
+    try {
+      await Auth.confirmSignUp(this.state.email, this.state.verificationCode);
+      await Auth.signIn(this.state.email, this.state.password);
+      console.log("Logged in");
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
   componentDidMount() {
     document.body.classList.toggle("register-page");
