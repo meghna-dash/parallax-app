@@ -15,6 +15,8 @@ import {
   UncontrolledTooltip
 } from "reactstrap";
 import NewGuideModal from './NewGuide/NewGuideModal';
+import { API, graphqlOperation } from 'aws-amplify';
+import * as queries from '../../graphql/queries';
 
 class GuidesTable extends Component {
   constructor(props) {
@@ -23,6 +25,7 @@ class GuidesTable extends Component {
       modal: false,
     };
     this.toggleModal = this.toggleModal.bind(this);
+    this.queryForGuides = this.queryForGuides.bind(this);
   }
 
   toggleModal() {
@@ -30,6 +33,29 @@ class GuidesTable extends Component {
       modal: !this.state.modal,
     })
   }
+
+  async queryForGuides() {
+    try {
+      const response = await API.graphql(graphqlOperation(queries.getGuides,
+        {
+          pk: "e7f31b8e-04fe-4313-bad4-4bb118428def",
+          sk: "guide"
+        }
+      ))
+      console.log(response.data.getGuides);
+      this.setState({
+        guides: response.data.getGuides,
+      })
+    }
+    catch (error) {
+      console.log('error', error);
+    }
+  }
+
+  componentDidMount() {
+    this.queryForGuides();
+  }
+
 
   render() {
     return (

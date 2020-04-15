@@ -11,7 +11,7 @@ import { withAuthenticator } from 'aws-amplify-react';
 import AWS from 'aws-sdk';
 import "./app.css";
 
-// Amplify.configure(awsconfig);
+Amplify.configure(awsconfig);
 const hist = createBrowserHistory();
 // AWS.config.credentials = Auth.essentialCredentials(Auth.currentCredentials());
 //

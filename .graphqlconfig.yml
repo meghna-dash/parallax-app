@@ -1,0 +1,15 @@
+projects:
+  parallax_appsync_api:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - src/graphql/**/*.js
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: javascript
+        generatedFileName: ''
+        docsFilePath: src/graphql
+        region: us-east-1
+        apiId: v33x3zquerh2pfep5uz25ozdo4
+        maxDepth: 2
