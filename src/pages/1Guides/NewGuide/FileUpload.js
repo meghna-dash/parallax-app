@@ -1,8 +1,5 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import {
-  InputGroupText,
-} from "reactstrap";
 
 class FileUpload extends Component {
   constructor() {
