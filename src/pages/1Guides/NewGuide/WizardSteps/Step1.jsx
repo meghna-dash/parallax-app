@@ -13,7 +13,35 @@ import {
 class Wizard extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      title: "",
+      titleState: "",
+    };
+    this.change = this.change.bind(this);
+    this.verifyLength = this.verifyLength.bind(this);
   }
+
+  change = (event, stateName, type, stateNameEqualTo, maxValue) => {
+    switch (type) {
+      case "length":
+        if (this.verifyLength(event.target.value, stateNameEqualTo)) {
+          this.setState({ [stateName + "State"]: "has-success" });
+        } else {
+          this.setState({ [stateName + "State"]: "has-danger" });
+        }
+        break;
+      default:
+        break;
+    }
+    this.setState({ [stateName]: event.target.value });
+  };
+
+  verifyLength = (value, length) => {
+    if (value.length >= length) {
+      return true;
+    }
+    return false;
+  };
 
   render() {
     return (
@@ -27,7 +55,21 @@ class Wizard extends React.Component {
               className="justify-content-center"
               onFileChange={this.props.onFileChange}
             />
-
+          </InputGroup>
+          <InputGroup className="input-group-focus">
+            <InputGroupAddon addonType="prepend">
+              <InputGroupText>
+                <i className="nc-icon nc-single-02" />
+              </InputGroupText>
+            </InputGroupAddon>
+            <Input
+              name="title"
+              placeholder="Guide Title"
+              type="text"
+              onChange={e => this.change(e, "title", "length", 1)}
+              onFocus={e => this.setState({ titleFocus: true })}
+              onBlur={e => this.setState({ titleFocus: false })}
+            />
           </InputGroup>
         </div>
       </>

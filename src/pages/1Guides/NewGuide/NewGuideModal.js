@@ -5,6 +5,9 @@ import Step1 from "./WizardSteps/Step1.jsx";
 import Step2 from "./WizardSteps/Step2.jsx";
 import Step3 from "./WizardSteps/Step3.jsx";
 import { Storage } from 'aws-amplify';
+import axios from "axios";
+import { v4 as uuidv4 } from 'uuid';
+
 
 class NewGuideModal extends Component {
   constructor() {
@@ -12,6 +15,7 @@ class NewGuideModal extends Component {
     this.state = {
       step: 0,
       selectedFile: null,
+      guideID: "e7f31b8e-04fe-4313-bad4-4bb118428def" + "/" + uuidv4(),
     };
     this.nextStep = this.nextStep.bind(this);
     this.onFileChange = this.onFileChange.bind(this);
@@ -39,14 +43,33 @@ class NewGuideModal extends Component {
 
   saveFiletoS3 = () => {
     console.log("file", this.state.selectedFile)
-    Storage.put(this.state.selectedFile)
-    .then(response => {
-      console.log("successful", response)
-    })
-    .catch(error => {
-      console.log("error", error)
-    })
+    // Storage.put(this.state.selectedFile)
+    // .then(response => {
+    //   console.log("successful", response)
+    // })
+    // .catch(error => {
+    //   console.log("error", error)
+    // })
+    axios(
+      "https://npmvy24qlj.execute-api.us-east-1.amazonaws.com/dev/upload?fileName=" +
+        this.state.guideID
+    ).then(response => {
+      const url = response.data.fileUploadURL;
+      axios({
+        method: "PUT",
+        url: url,
+        data: this.state.selectedFile,
+        headers: { "Content-Type": "multipart/form-data" }
+      })
+      .then(res => {
+        console.log("successful", res)
+      })
+      .catch(err => {
+        console.log("error", err)
+      });
+    });
   }
+
 
   render() {
     return (
