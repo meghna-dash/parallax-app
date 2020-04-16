@@ -66,7 +66,22 @@ class Wizard extends React.Component {
               name="title"
               placeholder="Guide Title"
               type="text"
-              onChange={e => this.change(e, "title", "length", 1)}
+              onChange={e => this.props.handleTitleChange(e)}
+              onFocus={e => this.setState({ titleFocus: true })}
+              onBlur={e => this.setState({ titleFocus: false })}
+            />
+          </InputGroup>
+          <InputGroup className="input-group-focus">
+            <InputGroupAddon addonType="prepend">
+              <InputGroupText>
+                <i className="nc-icon nc-single-02" />
+              </InputGroupText>
+            </InputGroupAddon>
+            <Input
+              name="description"
+              placeholder="Description"
+              type="paragraph"
+              onChange={e => this.props.handleDescriptionChange(e)}
               onFocus={e => this.setState({ titleFocus: true })}
               onBlur={e => this.setState({ titleFocus: false })}
             />

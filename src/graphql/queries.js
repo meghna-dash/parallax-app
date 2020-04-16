@@ -8,6 +8,7 @@ export const getGuides = /* GraphQL */ `
       sk
       title
       description
+      routes
       views
     }
   }

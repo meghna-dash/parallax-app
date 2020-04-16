@@ -5,9 +5,10 @@ import Step1 from "./WizardSteps/Step1.jsx";
 import Step2 from "./WizardSteps/Step2.jsx";
 import Step3 from "./WizardSteps/Step3.jsx";
 import { Storage } from 'aws-amplify';
-import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
-
+import { API, graphqlOperation } from 'aws-amplify';
+import * as mutations from '../../../graphql/mutations';
+import axios from "axios";
 
 class NewGuideModal extends Component {
   constructor() {
@@ -15,12 +16,17 @@ class NewGuideModal extends Component {
     this.state = {
       step: 0,
       selectedFile: null,
-      guideID: "e7f31b8e-04fe-4313-bad4-4bb118428def" + "/" + uuidv4(),
+      projectID: "e7f31b8e-04fe-4313-bad4-4bb118428def",
+      guideID: uuidv4(),
+      title: "",
+      description: ""
     };
     this.nextStep = this.nextStep.bind(this);
     this.onFileChange = this.onFileChange.bind(this);
+    this.handleTitleChange = this.handleTitleChange.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.finishButtonClick = this.finishButtonClick.bind(this);
-    this.onFileChange = this.onFileChange.bind(this);
+    this.putGuidesInDynamo = this.putGuidesInDynamo.bind(this);
   }
 
   nextStep() {
@@ -36,23 +42,60 @@ class NewGuideModal extends Component {
     })
   }
 
+  handleTitleChange(event) {
+    this.setState({
+      title: event.target.value
+    })
+  }
+
+  handleDescriptionChange(event) {
+    this.setState({
+      description: event.target.value
+    })
+  }
+
   finishButtonClick() {
+    this.putGuidesInDynamo();
     this.saveFiletoS3();
     this.props.toggleModal();
   }
 
+  async putGuidesInDynamo() {
+    console.log("START")
+    console.log({
+      pk: this.state.projectID,
+      sk: "guide_" + this.state.guideID,
+      title: this.state.title,
+      description: this.state.description,
+      routes: "/*",
+      views: 0
+    })
+    console.log("END")
+
+    try {
+      const response = await API.graphql(graphqlOperation(mutations.putGuides,
+        {
+          pk: this.state.projectID,
+          sk: "guide_" + this.state.guideID,
+          title: this.state.title,
+          description: this.state.description,
+          routes: "/*",
+          views: "0",
+        }
+      ))
+      console.log(response.data.putGuides);
+    }
+    catch (error) {
+      console.log('error', error);
+    }
+  }
+
   saveFiletoS3 = () => {
     console.log("file", this.state.selectedFile)
-    // Storage.put(this.state.selectedFile)
-    // .then(response => {
-    //   console.log("successful", response)
-    // })
-    // .catch(error => {
-    //   console.log("error", error)
-    // })
+    const videoID = this.state.projectID + "/" + this.state.guideID;
     axios(
       "https://npmvy24qlj.execute-api.us-east-1.amazonaws.com/dev/upload?fileName=" +
-        this.state.guideID
+        videoID + ".mp4"
     ).then(response => {
       const url = response.data.fileUploadURL;
       axios({
@@ -70,7 +113,6 @@ class NewGuideModal extends Component {
     });
   }
 
-
   render() {
     return (
       <Modal
@@ -82,7 +124,11 @@ class NewGuideModal extends Component {
             {
               stepName: "Upload",
               stepIcon: "nc-icon nc-laptop",
-              component: <Step1 onFileChange={this.onFileChange} />
+              component: <Step1
+                onFileChange={this.onFileChange}
+                handleTitleChange={this.handleTitleChange}
+                handleDescriptionChange={this.handleDescriptionChange}
+              />
             },
             {
               stepName: "Routes",

@@ -5,21 +5,24 @@ export const putGuides = /* GraphQL */ `
   mutation PutGuides(
     $pk: String
     $sk: String
-    $name: String
-    $date: String
+    $title: String
     $description: String
+    $routes: String
+    $views: Int
   ) {
     putGuides(
       pk: $pk
       sk: $sk
-      name: $name
-      date: $date
+      title: $title
       description: $description
+      routes: $routes
+      views: $views
     ) {
       pk
       sk
       title
       description
+      routes
       views
     }
   }

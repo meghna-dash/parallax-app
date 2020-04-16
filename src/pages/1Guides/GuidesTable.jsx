@@ -24,9 +24,9 @@ class GuidesTable extends Component {
     this.state = {
       modal: false,
       guides: [{
-        title: "",
+        title: "Title",
         description: "Create a guide to get started.",
-        views: "",
+        views: "Views",
       }]
     };
     this.toggleModal = this.toggleModal.bind(this);
