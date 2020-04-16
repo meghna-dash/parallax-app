@@ -23,6 +23,11 @@ class GuidesTable extends Component {
     super(props);
     this.state = {
       modal: false,
+      guides: [{
+        title: "",
+        description: "Create a guide to get started.",
+        views: "",
+      }]
     };
     this.toggleModal = this.toggleModal.bind(this);
     this.queryForGuides = this.queryForGuides.bind(this);
@@ -85,59 +90,61 @@ class GuidesTable extends Component {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="text-center">2</td>
-                <td>John Doe</td>
-                <td>Step 1, squish. Step 2, more squish. Step 3, warmy fuzzy feelings.</td>
-                <td>69</td>
-                <td className="text-center">
-                  <Button
-                    className="btn-icon"
-                    color="primary"
-                    id="play-tooltip"
-                    size="sm"
-                    type="button"
-                  >
-                    <i className="nc-icon nc-button-play" />
-                  </Button>{" "}
-                  <UncontrolledTooltip
-                    delay={0}
-                    target="play-tooltip"
-                  >
-                    Play
-                  </UncontrolledTooltip>
-                  <Button
-                    className="btn-icon"
-                    color="success"
-                    id="edit-tooltip"
-                    size="sm"
-                    type="button"
-                  >
-                    <i className="fa fa-edit" />
-                  </Button>{" "}
-                  <UncontrolledTooltip
-                    delay={0}
-                    target="edit-tooltip"
-                  >
-                    Edit
-                  </UncontrolledTooltip>
-                  <Button
-                    className="btn-icon"
-                    color="danger"
-                    id="delete-tooltip"
-                    size="sm"
-                    type="button"
-                  >
-                    <i className="fa fa-times" />
-                  </Button>{" "}
-                  <UncontrolledTooltip
-                    delay={0}
-                    target="delete-tooltip"
-                  >
-                    Delete
-                  </UncontrolledTooltip>
-                </td>
-              </tr>
+              {this.state.guides.map((guide, key) =>
+                <tr>
+                  <td className="text-center">{key + 1}</td>
+                  <td>{guide.title}</td>
+                  <td>{guide.description}</td>
+                  <td>{guide.views}</td>
+                  <td className="text-center">
+                    <Button
+                      className="btn-icon"
+                      color="primary"
+                      id="play-tooltip"
+                      size="sm"
+                      type="button"
+                    >
+                      <i className="nc-icon nc-button-play" />
+                    </Button>{" "}
+                    <UncontrolledTooltip
+                      delay={0}
+                      target="play-tooltip"
+                    >
+                      Play
+                    </UncontrolledTooltip>
+                    <Button
+                      className="btn-icon"
+                      color="success"
+                      id="edit-tooltip"
+                      size="sm"
+                      type="button"
+                    >
+                      <i className="fa fa-edit" />
+                    </Button>{" "}
+                    <UncontrolledTooltip
+                      delay={0}
+                      target="edit-tooltip"
+                    >
+                      Edit
+                    </UncontrolledTooltip>
+                    <Button
+                      className="btn-icon"
+                      color="danger"
+                      id="delete-tooltip"
+                      size="sm"
+                      type="button"
+                    >
+                      <i className="fa fa-times" />
+                    </Button>{" "}
+                    <UncontrolledTooltip
+                      delay={0}
+                      target="delete-tooltip"
+                    >
+                      Delete
+                    </UncontrolledTooltip>
+                  </td>
+                </tr>
+              )}
             </tbody>
           </Table>
         </CardBody>
