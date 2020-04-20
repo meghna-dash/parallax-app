@@ -13,37 +13,21 @@ import "./app.css";
 
 Amplify.configure(awsconfig);
 const hist = createBrowserHistory();
-// AWS.config.credentials = Auth.essentialCredentials(Auth.currentCredentials());
-//
-// Amplify.configure({
-//   Auth: {
-//     identityPoolId: 'us-east-1:82bdbe9c-3966-4320-8be5-162f8ea98564', //REQUIRED - Amazon Cognito Identity Pool ID
-//     region: 'us-east-1', // REQUIRED - Amazon Cognito Region
-//     userPoolId: 'us-east-1_G46x3gO3N', //OPTIONAL - Amazon Cognito User Pool ID
-//     userPoolWebClientId: '2su7m42u3lmp0sndlkb8u7tb0r', //OPTIONAL - Amazon Cognito Web Client ID
-//   },
-// })
-//   Storage: {
-//     AWSS3: {
-//       bucket: 'parallax-videos', //REQUIRED -  Amazon S3 bucket
-//       region: 'us-east-1', //OPTIONAL -  Amazon service region
-//       policy: 'public'
-//     }
-//   }
-// });
-// Storage.configure({
-//   Storage: {
-//     bucket: 'parallax-videos',
-//     region: 'us-east-1',
-//     credentials: {
-//       accessKeyId: 'AKIAJZK6BFA4II7PGEVQ',
-//       secretAccessKey: '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'
-//     }
-//   }
-// });
+
 class App extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    console.log('on component mount');
+    Auth.currentAuthenticatedUser().then(user => {
+      console.log(user);
+      this.setState({authState: 'signedIn'});
+    }).catch(e => {
+      console.log(e);
+      this.setState({authState: 'signIn'});
+    });
   }
 
   // render() {
@@ -83,5 +67,3 @@ class App extends Component {
 }
 
 export default App;
-
-// export default withAuthenticator(App, { includeGreetings: false});

@@ -1,7 +1,7 @@
 {
     "identityPoolName": "parallax_app_auth",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "authf873d1b8",
+    "resourceNameTruncated": "auth32e1a093",
     "userPoolName": "parallax_app_auth",
     "autoVerifiedAttributes": [
         "email"
@@ -62,7 +62,7 @@
         "email_verified",
         "phone_number_verified"
     ],
-    "userpoolClientLambdaRole": "authf873d1b8_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "auth32e1a093_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": true,
     "useDefault": "manual",
     "authSelections": "identityPoolAndUserPool",

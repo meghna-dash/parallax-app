@@ -28,7 +28,7 @@
     "@types/markerclustererplus": "2.1.33",
     "@types/react": "16.7.1",
     "ajv": "6.5.5",
-    "aws-amplify": "^1.2.3",
+    "aws-amplify": "^2.2.0",
     "aws-amplify-react": "^2.5.3",
     "aws-sdk": "^2.556.0",
     "axios": "^0.19.2",
