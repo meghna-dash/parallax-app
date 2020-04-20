@@ -1,15 +1,20 @@
 {
     "parallax": {
         "awscloudformation": {
-            "AuthRoleName": "amplify-parallax-app-parallax-183221-authRole",
-            "UnauthRoleArn": "arn:aws:iam::065047602817:role/amplify-parallax-app-parallax-183221-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::065047602817:role/amplify-parallax-app-parallax-183221-authRole",
+            "AuthRoleName": "amplify-parallax-app-parallax-151723-authRole",
+            "UnauthRoleArn": "arn:aws:iam::065047602817:role/amplify-parallax-app-parallax-151723-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::065047602817:role/amplify-parallax-app-parallax-151723-authRole",
             "Region": "us-east-1",
-            "DeploymentBucketName": "amplify-parallax-app-parallax-183221-deployment",
-            "UnauthRoleName": "amplify-parallax-app-parallax-183221-unauthRole",
-            "StackName": "amplify-parallax-app-parallax-183221",
-            "StackId": "arn:aws:cloudformation:us-east-1:065047602817:stack/amplify-parallax-app-parallax-183221/fad91b00-7f68-11ea-8c3d-12e727a79a85",
-            "AmplifyAppId": "d12lwjabovrflx"
+            "DeploymentBucketName": "amplify-parallax-app-parallax-151723-deployment",
+            "UnauthRoleName": "amplify-parallax-app-parallax-151723-unauthRole",
+            "StackName": "amplify-parallax-app-parallax-151723",
+            "StackId": "arn:aws:cloudformation:us-east-1:065047602817:stack/amplify-parallax-app-parallax-151723/91974320-833b-11ea-ae71-12717722e021",
+            "AmplifyAppId": "d2bmwielnjib7f"
+        },
+        "categories": {
+            "auth": {
+                "auth": {}
+            }
         }
     }
 }

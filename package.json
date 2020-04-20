@@ -1,7 +1,7 @@
 {
-  "name": "paper-dashboard-pro-react",
+  "name": "parallax-app",
   "version": "1.0.0",
-  "description": "Premium Bootstrap 4 Paper UI Design",
+  "description": "Parallax App",
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
@@ -20,14 +20,13 @@
     "reactstrap"
   ],
   "author": "Sidharth Potdar & Meghna Dash",
-  "license": "Creative Tim",
+  "license": "Parallax App",
   "dependencies": {
     "@atlaskit/css-reset": "^5.0.9",
     "@material-ui/core": "^4.8.3",
     "@types/googlemaps": "3.30.16",
     "@types/markerclustererplus": "2.1.33",
     "@types/react": "16.7.1",
-    "@webpack-cli/init": "^0.3.0",
     "ajv": "6.5.5",
     "aws-amplify": "^1.2.3",
     "aws-amplify-react": "^2.5.3",
@@ -77,9 +76,7 @@
     "slate-react": "^0.57.0",
     "styled-components": "^4.4.1",
     "uuid": "^3.4.0",
-    "uuidv4": "^6.0.0",
-    "webpack": "^4.41.2",
-    "webpack-dev-server": "^3.9.0"
+    "uuidv4": "^6.0.0"
   },
   "browserslist": [
     ">0.2%",

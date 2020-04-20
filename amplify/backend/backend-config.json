@@ -1,1 +1,9 @@
-{}
+{
+	"auth": {
+		"auth": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}
