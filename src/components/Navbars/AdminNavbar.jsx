@@ -19,6 +19,8 @@ import {
   Nav,
   Container
 } from "reactstrap";
+import { Auth } from 'aws-amplify';
+
 
 class AdminNavbar extends React.Component {
   constructor(props) {
@@ -70,11 +72,11 @@ class AdminNavbar extends React.Component {
     }
     this.setState(newState);
   };
-  //
-  // signOut = () => {
-  //   Auth.signOut();
-  //   sessionStorage.clear();
-  // }
+
+  signOut = () => {
+    Auth.signOut();
+    sessionStorage.clear();
+  }
 
   render() {
     return (
@@ -154,7 +156,7 @@ class AdminNavbar extends React.Component {
                   </DropdownToggle>
                   <DropdownMenu aria-labelledby="navbarDropdownMenuLink" right>
                     <DropdownItem
-                      href="https://userarx.com"
+                      href="https://parallaxux.com"
                       onClick={this.signOut}
                     >
                       Log Out

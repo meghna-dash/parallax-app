@@ -15,7 +15,7 @@ class Footer extends React.Component {
             <nav className="footer-nav">
               <ul>
                 <li>
-                  <a href="https://userarx.com">Userarx</a>
+                  <a href="https://parallaxux.com">Parallax</a>
                 </li>
               </ul>
             </nav>

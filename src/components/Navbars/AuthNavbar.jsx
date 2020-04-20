@@ -45,8 +45,8 @@ class AuthNavbar extends React.Component {
       >
         <Container>
           <div className="navbar-wrapper">
-            <NavbarBrand href="https://userarx.com">
-              Userarx
+            <NavbarBrand href="https://parallaxux.com">
+              Parallax
             </NavbarBrand>
           </div>
           <button
