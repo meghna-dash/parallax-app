@@ -105,11 +105,9 @@ class Register extends Component {
                   <i className="nc-icon nc-tv-2" />
                 </div>
                 <div className="description">
-                  <h5 className="info-title">Manage User Data in One Place</h5>
+                  <h5 className="info-title">Stop struggling with unexpected user behavior.</h5>
                   <p className="description">
-                    Easily maintain all of your user research data in one place
-                    with Userarx. Take notes directly on our platform or import
-                    notes from previous sessions.
+                  Users almost never think about your product the way you want them to, which causes significant drops in conversion, retention, and purchases. Parallax helps you avoid this with non-invasive, comprehensive product guides.
                   </p>
                 </div>
               </div>
@@ -118,11 +116,9 @@ class Register extends Component {
                   <i className="nc-icon nc-html5" />
                 </div>
                 <div className="description">
-                  <h5 className="info-title">Data Analysis to Find Trends</h5>
+                  <h5 className="info-title">Help your users with simple guides.</h5>
                   <p className="description">
-                    Streamline your analysis and synthesis processes with
-                    our powerful tagging and search tools. We help you efficiently
-                    sort through user data to find crucial patterns.
+                  Parallax lets you easily upload video guides that teach your users how to use your software. Identify what you want to teach your users, upload guides, and we will handle engaging your user.
                   </p>
                 </div>
               </div>
@@ -131,11 +127,9 @@ class Register extends Component {
                   <i className="nc-icon nc-atom" />
                 </div>
                 <div className="description">
-                  <h5 className="info-title">Valuable and Actionable Insights</h5>
+                  <h5 className="info-title">Bring users closer to that 'aha!' moment.</h5>
                   <p className="description">
-                    Learn what your users really want with insights curated just
-                    for you. Ground your team’s efforts in real data backed up
-                    by interviews and usability tests.
+                  Parallax presents your users with video guides. They can select what they want to learn to do from a few options you have determined. Increase conversion, retention, and user satisfaction using Parallax guides.
                   </p>
                 </div>
               </div>
@@ -143,7 +137,10 @@ class Register extends Component {
             <Col className="mr-auto" lg="4" md="6">
               <Card className="card-signup text-center">
                 <CardHeader>
-                  <CardTitle tag="h4">Sign Up</CardTitle>
+                  <CardTitle tag="h4">Get started with Parallax.</CardTitle>
+                  <p className="card-description">
+                    Stop losing users to frustrating experiences. Sign up to get early access to Parallax today.
+                  </p>
                   <p className="card-description">
                     {this.state.message}
                   </p>

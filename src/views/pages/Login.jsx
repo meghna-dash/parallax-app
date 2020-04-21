@@ -18,6 +18,7 @@ import {
 } from "reactstrap";
 import { Auth } from "aws-amplify";
 import { withRouter } from "react-router-dom";
+import { Redirect } from "react-router";
 
 class Login extends Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class Login extends Component {
       email: "",
       password: "",
       message: "",
+      toDashboard: false,
     };
   }
 
@@ -44,16 +46,20 @@ class Login extends Component {
 
   async handleSignIn(event) {
     event.preventDefault();
+
     try {
       await Auth.signIn(this.state.email, this.state.password)
       .then(user => sessionStorage.setItem("userID", user.username))
+      // .then(() => this.setState(() => ({
+      //   toDashboard: true
+      // })))
       // .then(user => this.props.updateAuthenticationState(true))
-      .then(user => this.props.history.push("/project/sessions"))
+      .then(() => this.props.history.push("/project/guides"))
     } catch (error) {
       this.setState({
         message: error.message,
       })
-      console.log(error.message);
+      console.log(error.message)
     }
   }
 
@@ -66,6 +72,11 @@ class Login extends Component {
   }
 
   render() {
+    // if (this.state.toDashboard === true) {
+    //   console.log("AUTH TRUEE ")
+    //   return <Redirect to='/project/guides'/>
+    // }
+
     return (
       <div className="login-page">
         <Container>

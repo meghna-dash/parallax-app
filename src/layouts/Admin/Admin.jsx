@@ -9,6 +9,8 @@ import Sidebar from "components/Sidebar/Sidebar.jsx";
 import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
 import routes from "routes.js";
 import './admin.css';
+import { API, graphqlOperation } from 'aws-amplify';
+import * as queries from '../../graphql/queries';
 
 var ps;
 
@@ -29,6 +31,7 @@ class Admin extends React.Component {
       document.documentElement.classList.remove("perfect-scrollbar-off");
       ps = new PerfectScrollbar(this.refs.mainPanel);
     }
+    // this.queryForProjects();
   }
 
   componentWillUnmount() {
@@ -79,6 +82,26 @@ class Admin extends React.Component {
     }
     document.body.classList.toggle("sidebar-mini");
   };
+
+  async queryForProjects() {
+    console.log(" query for projects ")
+    try {
+      const response = await API.graphql(graphqlOperation(queries.getProjects,
+        {
+          pk: sessionStorage.getItem("userID"),
+          sk: "user"
+        }
+      ))
+      console.log(response.data.getProjects);
+      this.setState({
+        projects: response.data.getProjects,
+      })
+    }
+    catch (error) {
+      console.log('error', error);
+    }
+  }
+
   render() {
     return (
       <div className="wrapper mountains">

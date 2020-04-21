@@ -45,6 +45,35 @@
           },
           "isDeprecated" : false,
           "deprecationReason" : null
+        }, {
+          "name" : "getProjects",
+          "description" : null,
+          "args" : [ {
+            "name" : "pk",
+            "description" : null,
+            "type" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          }, {
+            "name" : "sk",
+            "description" : null,
+            "type" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          } ],
+          "type" : {
+            "kind" : "OBJECT",
+            "name" : "User",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
         } ],
         "inputFields" : null,
         "interfaces" : [ ],
@@ -53,7 +82,7 @@
       }, {
         "kind" : "OBJECT",
         "name" : "Guide",
-        "description" : "  schema {\n###     query: Query\n###     mutation: Mutation\n### }\n### type Query {\n###     # Get a single value of type 'Post' by primary key.\n###     singlePost(id: ID!): Post\n### }\n### type Mutation {\n###     # Put a single value of type 'Post'.\n###     # If an item exists it's updated. If it does not it's created.\n###     putPost(id: ID!, title: String!): Post\n### }\n### type Post {\n###     id: ID!\n###     title: String!\n### }",
+        "description" : "  schema {\n####     query: Query\n####     mutation: Mutation\n#### }\n#### type Query {\n####     # Get a single value of type 'Post' by primary key.\n####     singlePost(id: ID!): Post\n#### }\n#### type Mutation {\n####     # Put a single value of type 'Post'.\n####     # If an item exists it's updated. If it does not it's created.\n####     putPost(id: ID!, title: String!): Post\n#### }\n#### type Post {\n####     id: ID!\n####     title: String!\n#### }",
         "fields" : [ {
           "name" : "pk",
           "description" : null,
@@ -141,6 +170,52 @@
         "fields" : null,
         "inputFields" : null,
         "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "OBJECT",
+        "name" : "User",
+        "description" : null,
+        "fields" : [ {
+          "name" : "pk",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "sk",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "projects",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            }
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        } ],
+        "inputFields" : null,
+        "interfaces" : [ ],
         "enumValues" : null,
         "possibleTypes" : null
       }, {
