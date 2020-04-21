@@ -168,7 +168,8 @@ class Sidebar extends React.Component {
               </a>
               <Collapse isOpen={this.state.openAvatar}>
                 <ul className="nav">
-                  {this.props.projects.map((project, key) => (
+                  {this.props.project != null &&
+                    this.props.projects.map((project, key) => (
                     <li
                       id={key}
                       onClick={this.updateSessionStorageWithProject(project)}

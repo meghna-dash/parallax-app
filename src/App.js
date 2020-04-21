@@ -26,35 +26,7 @@ class App extends Component {
     super(props);
   }
 
-
-
-  // componentDidMount() {
-  //   console.log('on component mount');
-  //   Auth.currentAuthenticatedUser().then(user => {
-  //     console.log(user);
-  //     this.setState({authState: 'signedIn'});
-  //   }).catch(e => {
-  //     console.log(e);
-  //     this.setState({authState: 'signIn'});
-  //   });
-  // }
-
-
-
-  // render() {
-  //   return (
-  //     <Router history={hist}>
-  //       <Switch className="mountains">
-  //         <Route path="/project" component={props => <AdminLayout {...props} />} />
-  //         <Route path="/auth" render={props => <AuthLayout {...props} />} />
-  //         <Redirect from="/" to="/project" />
-  //       </Switch>
-  //     </Router>
-  //   )
-  // }
-
   render() {
-
     const PrivateRoute = ({ component: Component, ...rest }) => (
       <Route {...rest} render={(props) => (
         sessionStorage.getItem("userID")
@@ -65,25 +37,14 @@ class App extends Component {
             }} />
       )} />
     )
-    // if(sessionStorage.getItem("userID") != null && sessionStorage.getItem("userID") != undefined) {
-      return (
-        <Router history={hist}>
-          <Switch className="mountains">
-            <Route path="/auth" render={props => <AuthLayout {...props} />} />
-            <PrivateRoute path="/project" component={props => <AdminLayout {...props} />} />
-          </Switch>
-        </Router>
-      )
-    // }
-    // else {
-    //   return (
-    //     <Router history={hist}>
-    //       <Switch>
-    //         <Redirect from="/" to="/auth/login" />
-    //       </Switch>
-    //     </Router>
-    //   )
-    // }
+    return (
+      <Router history={hist}>
+        <Switch className="mountains">
+          <Route path="/auth" render={props => <AuthLayout {...props} />} />
+          <PrivateRoute path="/project" component={props => <AdminLayout {...props} />} />
+        </Switch>
+      </Router>
+    )
   }
 }
 

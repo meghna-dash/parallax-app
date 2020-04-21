@@ -31,7 +31,7 @@ class Admin extends React.Component {
       document.documentElement.classList.remove("perfect-scrollbar-off");
       ps = new PerfectScrollbar(this.refs.mainPanel);
     }
-    // this.queryForProjects();
+    this.queryForUsersProjects();
   }
 
   componentWillUnmount() {
@@ -83,18 +83,18 @@ class Admin extends React.Component {
     document.body.classList.toggle("sidebar-mini");
   };
 
-  async queryForProjects() {
+  async queryForUsersProjects() {
     console.log(" query for projects ")
     try {
-      const response = await API.graphql(graphqlOperation(queries.getProjects,
+      const response = await API.graphql(graphqlOperation(queries.getUser,
         {
           pk: sessionStorage.getItem("userID"),
           sk: "user"
         }
       ))
-      console.log(response.data.getProjects);
+      console.log(response.data.getUser);
       this.setState({
-        projects: response.data.getProjects,
+        projects: response.data.getUser,
       })
     }
     catch (error) {

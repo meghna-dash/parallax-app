@@ -13,9 +13,9 @@ export const getGuides = /* GraphQL */ `
     }
   }
 `;
-export const getProjects = /* GraphQL */ `
-  query GetProjects($pk: String, $sk: String) {
-    getProjects(pk: $pk, sk: $sk) {
+export const getUser = /* GraphQL */ `
+  query GetUser($pk: String, $sk: String) {
+    getUser(pk: $pk, sk: $sk) {
       pk
       sk
       projects
