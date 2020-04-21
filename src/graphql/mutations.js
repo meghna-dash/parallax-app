@@ -27,3 +27,32 @@ export const putGuides = /* GraphQL */ `
     }
   }
 `;
+export const putProject = /* GraphQL */ `
+  mutation PutProject(
+    $pk: String
+    $sk: String
+    $name: String
+    $organization: String
+    $isRecording: Boolean
+    $dateCreated: String
+    $creator: String
+  ) {
+    putProject(
+      pk: $pk
+      sk: $sk
+      name: $name
+      organization: $organization
+      isRecording: $isRecording
+      dateCreated: $dateCreated
+      creator: $creator
+    ) {
+      pk
+      sk
+      name
+      organization
+      isRecording
+      dateCreated
+      creator
+    }
+  }
+`;

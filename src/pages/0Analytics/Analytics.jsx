@@ -3,6 +3,7 @@ import { Card, Col, Row } from 'reactstrap';
 import GuideViewsGraph from './GuideViewsGraph';
 import NewUserEngagement from './NewUserEngagement';
 import GuidesTable from '../1Guides/GuidesTable';
+import MostViewedGuide from './MostViewedGuide';
 
 class Sessions extends Component {
   render() {
@@ -21,7 +22,7 @@ class Sessions extends Component {
             <GuidesTable />
           </Col>
           <Col lg="4">
-            <Card />
+            <MostViewedGuide />
           </Col>
           <Col lg="4">
             <Card />
