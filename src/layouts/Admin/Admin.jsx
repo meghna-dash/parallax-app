@@ -91,11 +91,21 @@ class Admin extends React.Component {
           pk: sessionStorage.getItem("userID"),
           sk: "user"
         }
-      ))
-      console.log(response.data.getUser);
+      ));
       this.setState({
-        projects: response.data.getUser,
-      })
+        projects: response.data.getUser[0].projects,
+      });
+      const currProjectID = response.data.getUser[0].projects[0];
+      sessionStorage.setItem("projectID", currProjectID);
+
+      const resp = await API.graphql(graphqlOperation(queries.getProject,
+        {
+          pk: currProjectID,
+          sk: "project"
+        }
+      ));
+      const project = resp.data.getProject[0];
+      sessionStorage.setItem("projectName", project.name);
     }
     catch (error) {
       console.log('error', error);

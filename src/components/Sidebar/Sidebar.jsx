@@ -13,6 +13,8 @@ class Sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.getCollapseStates(props.routes);
+    this.state.projects = props.projects;
+    console.log(props);
   }
 
   updateSessionStorageWithProject = (project) => {

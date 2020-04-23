@@ -1,9 +1,17 @@
 import Analytics from "pages/0Analytics/Analytics.jsx";
 import Guides from "pages/1Guides/Guides.jsx";
+import Projects from "pages/Projects/Projects.jsx";
 import Login from "views/pages/Login.jsx";
 import Register from "views/pages/Register.jsx";
 
 const routes = [
+  {
+    path: "/projects",
+    name: "Projects",
+    icon: "nc-icon nc-single-copy-04",
+    component: Projects,
+    layout: "/project"
+  },
   {
     path: "/analytics",
     name: "Analytics",
