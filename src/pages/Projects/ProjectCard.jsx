@@ -72,9 +72,9 @@ class ProjectCard extends Component {
     return (
       <Col md="3">
         {this.state.loaded &&
-          <Card className="card-doc">
+          <Card className="card-doc project-card">
             <CardHeader>
-              <CardTitle tag="h4">
+              <CardTitle tag="h5" className="project-card-title">
                 {this.state.name}
               </CardTitle>
               <h5 className="card-category">
@@ -86,8 +86,8 @@ class ProjectCard extends Component {
             </CardHeader>
             <CardBody>
               {this.state.id == this.state.currentProject ?
-                <Button color="secondary" disabled>Current project</Button> :
-                <Button color="primary" onClick={() => this.setActiveProject}>Activate project</Button>
+                <Button className="project-card-button" disabled>Current project</Button> :
+                <Button className="project-card-button" onClick={() => this.setActiveProject}>Activate project</Button>
               }
             </CardBody>
           </Card>
