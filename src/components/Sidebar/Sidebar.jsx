@@ -57,46 +57,52 @@ class Sidebar extends React.Component {
       if (prop.redirect) {
         return null;
       }
+      if (prop.name == "Account" || prop.name == "Projects") {
+        return null;
+      }
       if (prop.collapse) {
-        var st = {};
-        st[prop["state"]] = !this.state[prop.state];
-        return (
-          <li
-            className={this.getCollapseInitialState(prop.views) ? "active" : ""}
-            key={key}
-          >
-            <a
-              href="#pablo"
-              data-toggle="collapse"
-              aria-expanded={this.state[prop.state]}
-              onClick={e => {
-                e.preventDefault();
-                this.setState(st);
-              }}
+          console.log(prop.name)
+          var st = {};
+          st[prop["state"]] = !this.state[prop.state];
+          return (
+            <li
+              className={this.getCollapseInitialState(prop.views) ? "active" : ""}
+              key={key}
             >
-              {prop.icon !== undefined ? (
-                <>
-                  <i className={prop.icon} />
-                  <p>
-                    {prop.name}
-                    <b className="caret" />
-                  </p>
-                </>
-              ) : (
-                <>
-                  <span className="sidebar-mini-icon">{prop.mini}</span>
-                  <span className="sidebar-normal">
-                    {prop.name}
-                    <b className="caret" />
-                  </span>
-                </>
-              )}
-            </a>
-            <Collapse isOpen={this.state[prop.state]}>
-              <ul className="nav">{this.createLinks(prop.views)}</ul>
-            </Collapse>
-          </li>
-        );
+              <a
+                href="#pablo"
+                data-toggle="collapse"
+                aria-expanded={this.state[prop.state]}
+                onClick={e => {
+                  e.preventDefault();
+                  this.setState(st);
+                }}
+              >
+                {prop.icon !== undefined ? (
+                  <>
+                    <i className={prop.icon} />
+                    <p>
+                      {prop.name}
+                      <b className="caret" />
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <span className="sidebar-mini-icon">{prop.mini}</span>
+                    <span className="sidebar-normal">
+                      {prop.name}
+                      <b className="caret" />
+                    </span>
+                  </>
+                )}
+              </a>
+              <Collapse isOpen={this.state[prop.state]}>
+                <ul className="nav">{this.createLinks(prop.views)}</ul>
+              </Collapse>
+            </li>
+          );
+
+
       }
       return (
         <li className={this.activeRoute(prop.layout + prop.path)} key={key}>
@@ -163,30 +169,26 @@ class Sidebar extends React.Component {
                   this.setState({ openAvatar: !this.state.openAvatar })
                 }
               >
-                <span>
-                  {sessionStorage.getItem('projectName') ? sessionStorage.getItem('projectName') : "All Projects"}
+                <h6 style={{ fontWeight: "heavy", color: 'black'}}>
+                  All Projects
                   <b className="caret" />
-                </span>
+                </h6>
               </a>
               <Collapse isOpen={this.state.openAvatar}>
                 <ul className="nav">
-                  {this.props.project != null &&
-                    this.props.projects.map((project, key) => (
-                    <li
-                      id={key}
-                      onClick={this.updateSessionStorageWithProject(project)}
+                  <li
+                    onClick={() => this.props.history.push('/project/projects')}
+                  >
+                    <NavLink
+                      to="/project/sessions"
+                      activeClassName=""
                     >
-                      <NavLink
-                        to="/project/sessions"
-                        activeClassName=""
-                      >
-                        <span className="sidebar-mini-icon">{key + 1}</span>
-                        <span className="sidebar-normal">
-                          {project.name}
-                        </span>
-                      </NavLink>
-                    </li>
-                  ))}
+                      <span className="sidebar-mini-icon">+</span>
+                      <span className="sidebar-normal">
+                        Switch Project
+                      </span>
+                    </NavLink>
+                  </li>
                 </ul>
               </Collapse>
             </div>
