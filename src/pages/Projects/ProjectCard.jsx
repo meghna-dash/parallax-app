@@ -80,18 +80,18 @@ class ProjectCard extends Component {
                 {this.state.name}
               </CardTitle>
             </CardHeader>
-            <CardBody>
               <CardText>
                 <h5 className="card-category">
                   Created {moment.unix(`${this.state.ts / 1000 }`).format('LL')}
                 </h5>
                 {this.state.url}
               </CardText>
+              <CardBody>
               {this.state.id == this.state.currentProject ?
                 <Button className="project-card-button" disabled>Current project</Button> :
                 <Button className="project-card-button" onClick={() => this.setActiveProject}>Activate project</Button>
               }
-            </CardBody>
+              </CardBody>
           </Card>
         }
       </Col>

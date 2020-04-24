@@ -17,10 +17,6 @@ class Sidebar extends React.Component {
     console.log(props);
   }
 
-  updateSessionStorageWithProject = (project) => {
-    sessionStorage.setItem('projectName', project.name)
-    sessionStorage.setItem('projectID', project.sk.replace("project-", ""))
-  }
   // this creates the intial state of this component based on the collapse routes
   // that it gets through this.props.routes
   getCollapseStates = routes => {
@@ -61,48 +57,46 @@ class Sidebar extends React.Component {
         return null;
       }
       if (prop.collapse) {
-          console.log(prop.name)
-          var st = {};
-          st[prop["state"]] = !this.state[prop.state];
-          return (
-            <li
-              className={this.getCollapseInitialState(prop.views) ? "active" : ""}
-              key={key}
+        console.log(prop.name)
+        var st = {};
+        st[prop["state"]] = !this.state[prop.state];
+        return (
+          <li
+            className={this.getCollapseInitialState(prop.views) ? "active" : ""}
+            key={key}
+          >
+            <a
+              href="#pablo"
+              data-toggle="collapse"
+              aria-expanded={this.state[prop.state]}
+              onClick={e => {
+                e.preventDefault();
+                this.setState(st);
+              }}
             >
-              <a
-                href="#pablo"
-                data-toggle="collapse"
-                aria-expanded={this.state[prop.state]}
-                onClick={e => {
-                  e.preventDefault();
-                  this.setState(st);
-                }}
-              >
-                {prop.icon !== undefined ? (
-                  <>
-                    <i className={prop.icon} />
-                    <p>
-                      {prop.name}
-                      <b className="caret" />
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <span className="sidebar-mini-icon">{prop.mini}</span>
-                    <span className="sidebar-normal">
-                      {prop.name}
-                      <b className="caret" />
-                    </span>
-                  </>
-                )}
-              </a>
-              <Collapse isOpen={this.state[prop.state]}>
-                <ul className="nav">{this.createLinks(prop.views)}</ul>
-              </Collapse>
-            </li>
-          );
-
-
+              {prop.icon !== undefined ? (
+                <>
+                  <i className={prop.icon} />
+                  <p>
+                    {prop.name}
+                    <b className="caret" />
+                  </p>
+                </>
+              ) : (
+                <>
+                  <span className="sidebar-mini-icon">{prop.mini}</span>
+                  <span className="sidebar-normal">
+                    {prop.name}
+                    <b className="caret" />
+                  </span>
+                </>
+              )}
+            </a>
+            <Collapse isOpen={this.state[prop.state]}>
+              <ul className="nav">{this.createLinks(prop.views)}</ul>
+            </Collapse>
+          </li>
+        );
       }
       return (
         <li className={this.activeRoute(prop.layout + prop.path)} key={key}>
