@@ -6,12 +6,14 @@ import {
   CardText,
   CardTitle,
   CardBody,
+  CardFooter,
   Col,
   Row
 } from "reactstrap";
 import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
+import * as moment from 'moment';
 
 class ProjectCard extends Component {
   constructor(props) {
@@ -24,7 +26,7 @@ class ProjectCard extends Component {
       currentProject: props.currentProject,
       name: "",
       ts: 0,
-      url: ""
+      url: "",
     }
   }
 
@@ -77,14 +79,14 @@ class ProjectCard extends Component {
               <CardTitle tag="h5" className="project-card-title">
                 {this.state.name}
               </CardTitle>
-              <h5 className="card-category">
-                {this.state.ts}
-              </h5>
-              <CardText>
-                {this.state.url}
-              </CardText>
             </CardHeader>
             <CardBody>
+              <CardText>
+                <h5 className="card-category">
+                  Created {moment.unix(`${this.state.ts / 1000 }`).format('LL')}
+                </h5>
+                {this.state.url}
+              </CardText>
               {this.state.id == this.state.currentProject ?
                 <Button className="project-card-button" disabled>Current project</Button> :
                 <Button className="project-card-button" onClick={() => this.setActiveProject}>Activate project</Button>

@@ -6,13 +6,13 @@
   align-items: center;
 }
 
-.project-card-button {
-  background-color: #f7598b !important;
-}
-
 .project-card-title {
   font-weight: 800;
   color: #082b6e;
   text-align: center;
   text-transform: capitalize;
+}
+
+.project-card-button {
+  background-color: #f7598b !important;
 }

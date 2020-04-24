@@ -4,6 +4,9 @@ import {
   Card,
   CardHeader,
   CardTitle,
+  CardSubtitle,
+  CardText,
+  CardBody,
   Col,
   Form,
   FormGroup,
@@ -115,7 +118,11 @@ class Projects extends Component {
                 <CardTitle tag="h5" className="project-card-title">
                   Create New Project
                 </CardTitle>
+                <CardSubtitle>
+                  Create a new project to add Parallax to your product. This project will serve your entire domain or product.
+                </CardSubtitle>
               </CardHeader>
+              <CardBody/>
             </Card>
           </Col>
         </Row>
