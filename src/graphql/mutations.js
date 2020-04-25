@@ -23,6 +23,7 @@ export const putGuides = `mutation PutGuides(
     description
     routes
     views
+    path
   }
 }
 `;
@@ -63,6 +64,27 @@ export const updateUser = `mutation UpdateUser($pk: String!, $sk: String!, $curr
     sk
     projects
     currentProject
+  }
+}
+`;
+export const updateUserProjects = `mutation UpdateUserProjects($pk: String!, $sk: String!, $newProject: String) {
+  updateUserProjects(pk: $pk, sk: $sk, newProject: $newProject) {
+    pk
+    sk
+    projects
+    currentProject
+  }
+}
+`;
+export const deleteGuide = `mutation DeleteGuide($pk: String!, $sk: String!) {
+  deleteGuide(pk: $pk, sk: $sk) {
+    pk
+    sk
+    title
+    description
+    routes
+    views
+    path
   }
 }
 `;

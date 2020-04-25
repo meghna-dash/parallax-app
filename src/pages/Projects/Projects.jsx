@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+  Alert,
   Button,
   Card,
   CardHeader,
@@ -26,8 +27,10 @@ class Projects extends Component {
       projects: [],
       currentProject: null,
       showModal: false,
+      showAlert: false,
       newProjectName: "",
-      newProjectUrl: ""
+      newProjectUrl: "",
+      loaded: false
     }
   }
 
@@ -45,7 +48,8 @@ class Projects extends Component {
       ));
       this.setState({
         projects: response.data.getUser[0].projects,
-        currentProject: response.data.getUser[0].currentProject
+        currentProject: response.data.getUser[0].currentProject,
+        loaded: true
       });
     }
     catch (error) {
@@ -60,29 +64,39 @@ class Projects extends Component {
   }
 
   createNewProject = async () => {
-    const id = uuid();
-    try {
-      const response = await API.graphql(graphqlOperation(mutations.putProject,
-        {
-          pk: id,
-          sk: "project",
-          name: this.state.newProjectName,
-          url: this.state.newProjectUrl,
-          isRecording: true,
-          creator: sessionStorage.getItem("userID"),
-          dateCreated: Date.now().toString()
-        }
-      ))
-      console.log(response.data.putProject);
-      this.setState({
-        newProjectName: "",
-        newProjectUrl: ""
-      })
+    if (this.state.projects.length < 1 && this.state.loaded) {
+      const id = uuid();
+      try {
+        const response = await API.graphql(graphqlOperation(mutations.putProject,
+          {
+            pk: id,
+            sk: "project",
+            name: this.state.newProjectName,
+            url: this.state.newProjectUrl,
+            isRecording: true,
+            creator: sessionStorage.getItem("userID"),
+            dateCreated: Date.now().toString()
+          }
+        ));
+        const resp = await API.graphql(graphqlOperation(mutations.updateUserProjects,
+          {
+            pk: sessionStorage.getItem("userID"),
+            sk: "user",
+            newProject: id
+          }
+        ));
+        this.getProjects();
+        this.setState({
+          newProjectName: "",
+          newProjectUrl: ""
+        });
+      }
+      catch (error) {
+        console.log('error', error);
+      }
+    } else {
+      this.toggleAlert();
     }
-    catch (error) {
-      console.log('error', error);
-    }
-    console.log(this.state)
   }
 
   handleNewProjectChange = async (event) => {
@@ -94,14 +108,25 @@ class Projects extends Component {
     });
   }
 
+  toggleAlert = () => {
+    this.setState({
+      showAlert: !this.state.showAlert,
+      showModal: false
+    });
+  }
+
   render() {
     return (
       <div className="content">
+        <Alert color="danger" isOpen={this.state.showAlert} toggle={this.toggleAlert}>
+          We do not currently support more than one project per user!
+        </Alert>
         <Row>
           {this.state.projects.map(project => (
             <ProjectCard
               id={project}
               currentProject={this.state.currentProject}
+              refresh={this.getProjects}
             />
           ))}
           <Col md="3">

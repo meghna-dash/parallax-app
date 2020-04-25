@@ -76,7 +76,8 @@
     "slate-react": "^0.57.0",
     "styled-components": "^4.4.1",
     "uuid": "^3.4.0",
-    "uuidv4": "^6.0.0"
+    "uuidv4": "^6.0.0",
+    "video.js": "^7.7.5"
   },
   "browserslist": [
     ">0.2%",

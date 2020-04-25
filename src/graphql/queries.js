@@ -9,6 +9,7 @@ export const getGuides = `query GetGuides($pk: String, $sk: String) {
     description
     routes
     views
+    path
   }
 }
 `;

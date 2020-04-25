@@ -16,10 +16,11 @@ class NewGuideModal extends Component {
     this.state = {
       step: 0,
       selectedFile: null,
-      projectID: "e7f31b8e-04fe-4313-bad4-4bb118428def",
+      projectID: sessionStorage.getItem("projectID"),
       guideID: uuidv4(),
       title: "",
-      description: ""
+      description: "",
+      bucketURL: "https://parallax-videos.s3.amazonaws.com/"
     };
     this.nextStep = this.nextStep.bind(this);
     this.onFileChange = this.onFileChange.bind(this);
@@ -58,6 +59,7 @@ class NewGuideModal extends Component {
     this.putGuidesInDynamo();
     this.saveFiletoS3();
     this.props.toggleModal();
+    this.props.refresh();
   }
 
   async putGuidesInDynamo() {
@@ -68,7 +70,8 @@ class NewGuideModal extends Component {
       title: this.state.title,
       description: this.state.description,
       routes: "/*",
-      views: 0
+      views: 0,
+      path: this.state.bucketURL + this.state.projectID + "/videos/" + this.state.guideID + ".mp4"
     })
     console.log("END")
 
@@ -81,6 +84,7 @@ class NewGuideModal extends Component {
           description: this.state.description,
           routes: "/*",
           views: "0",
+          path: this.state.bucketURL + this.state.projectID + "/videos/" + this.state.guideID + ".mp4"
         }
       ))
       console.log(response.data.putGuides);
@@ -92,7 +96,7 @@ class NewGuideModal extends Component {
 
   saveFiletoS3 = () => {
     console.log("file", this.state.selectedFile)
-    const videoID = this.state.projectID + "/" + this.state.guideID;
+    const videoID = this.state.projectID + "/videos/" + this.state.guideID;
     axios(
       "https://npmvy24qlj.execute-api.us-east-1.amazonaws.com/dev/upload?fileName=" +
         videoID + ".mp4"

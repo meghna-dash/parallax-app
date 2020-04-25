@@ -7,6 +7,8 @@ import {
   CardTitle,
   CardBody,
   Col,
+  Modal,
+  ModalBody,
   Row
 } from "reactstrap";
 import { API, graphqlOperation } from 'aws-amplify';
@@ -26,13 +28,15 @@ class ProjectCard extends Component {
       ts: 0,
       url: ""
     }
+
+    this.refresh = props.refresh.bind(this);
   }
 
   componentDidMount() {
     this.getProjectData();
   }
 
-  async getProjectData() {
+  getProjectData = async () => {
     try {
       const resp = await API.graphql(graphqlOperation(queries.getProject,
         {
@@ -53,7 +57,7 @@ class ProjectCard extends Component {
     }
   }
 
-  async setActiveProject() {
+  setActiveProject = async () => {
     try {
       const response = await API.graphql(graphqlOperation(mutations.updateUser,
         {
@@ -62,17 +66,24 @@ class ProjectCard extends Component {
           currentProject: this.state.id
         }
       ))
+      this.refresh();
     }
     catch (error) {
       console.log('error', error);
     }
   }
 
+  toggleModal = () => {
+    this.setState({
+      showModal: !this.state.showModal
+    });
+  }
+
   render() {
     return (
       <Col md="3">
         {this.state.loaded &&
-          <Card className="card-doc">
+          <Card tag="a" className="card-doc" onClick={this.toggleModal} style={{ cursor: "pointer" }}>
             <CardHeader>
               <CardTitle tag="h4">
                 {this.state.name}
@@ -85,13 +96,45 @@ class ProjectCard extends Component {
               </CardText>
             </CardHeader>
             <CardBody>
-              {this.state.id == this.state.currentProject ?
+              {this.state.id === this.state.currentProject ?
                 <Button color="secondary" disabled>Current project</Button> :
-                <Button color="primary" onClick={() => this.setActiveProject}>Activate project</Button>
+                <Button color="primary" onClick={this.setActiveProject}>Activate project</Button>
               }
             </CardBody>
           </Card>
         }
+        <Modal style={{maxWidth: '1600px', width: '50%'}} isOpen={this.state.showModal} toggle={this.toggleModal} size="lg">
+          <div className="modal-header justify-content-right">
+            <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.toggleModal}>
+              <span aria-hidden="true">×</span>
+            </button>
+            <h5 className="modal-title">{this.state.name}</h5>
+          </div>
+          <ModalBody>
+            Insert this code snippet into the head tag of your application. This will inject our guide widget and recorder into your website and allow us to learn about your users' behaviors.
+            <pre>
+              <code className="language-json">
+                {`
+                  <script type=text/javascript>
+                    var projectID="${this.state.id}";
+                    window.sessionStorage.setItem("parallax-pid", projectID);
+                    document.addEventListener("DOMContentLoaded", (event) => {
+                      var head = document.getElementsByTagName("head").item(0);
+                      var recorderScript = document.createElement("script");
+                      var injectScript = document.createElement("script");
+                      recorderScript.setAttribute("type", "text/javascript");
+                      injectScript.setAttribute("type", "text/javascript");
+                      recorderScript.setAttribute("src", "https://static.parallaxux.com/recorder.js");
+                      injectScript.setAttribute("src", "https://static.parallaxux.com/inject.js");
+                      head.appendChild(recorderScript);
+                      head.appendChild(injectScript);
+                    });
+                  </script>
+                `}
+              </code>
+            </pre>
+          </ModalBody>
+        </Modal>
       </Col>
     );
   }
