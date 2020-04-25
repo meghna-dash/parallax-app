@@ -105,7 +105,7 @@ class ProjectCard extends Component {
               </CardBody>
           </Card>
         }
-        <Modal style={{maxWidth: '1600px', width: '50%'}} isOpen={this.state.showModal} toggle={this.toggleModal} size="lg">
+        <Modal className="project-modal"style={{maxWidth: '1600px', width: '50%'}} isOpen={this.state.showModal} toggle={this.toggleModal} size="lg">
           <div className="modal-header justify-content-right">
             <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.toggleModal}>
               <span aria-hidden="true">×</span>

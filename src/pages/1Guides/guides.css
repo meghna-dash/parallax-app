@@ -1,3 +1,7 @@
+.card {
+  margin-bottom: 0px !important;
+}
+
 .guide-card {
   min-height: 25%;
   transform: translate3d(0,0,0);
@@ -5,6 +9,7 @@
   border-width: medium;
   align-content: center;
   align-items: center;
+  margin-bottom: 0px;
 }
 
 .guide-card-title {
@@ -20,7 +25,7 @@
   background-color: rgba(0, 0, 0, 0) !important;
 }
 
-.modal-content {
+.guide-modal-content {
   box-shadow: none !important;
   background-color: rgba(0, 0, 0, 0) !important;
 }
