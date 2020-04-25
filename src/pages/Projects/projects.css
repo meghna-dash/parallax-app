@@ -1,0 +1,19 @@
+.project-card {
+  min-height: 25%;
+  transform: translate3d(0,0,0);
+  border-color: #f7598b;
+  border-width: medium;
+  align-content: center;
+  align-items: center;
+}
+
+.project-card-title {
+  font-weight: 800;
+  color: #082b6e;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.project-card-button {
+  background-color: #f7598b !important;
+}

@@ -6,6 +6,7 @@ import {
   CardText,
   CardTitle,
   CardBody,
+  CardFooter,
   Col,
   Modal,
   ModalBody,
@@ -14,6 +15,7 @@ import {
 import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
+import * as moment from 'moment';
 
 class ProjectCard extends Component {
   constructor(props) {
@@ -26,7 +28,7 @@ class ProjectCard extends Component {
       currentProject: props.currentProject,
       name: "",
       ts: 0,
-      url: ""
+      url: "",
     }
 
     this.refresh = props.refresh.bind(this);
@@ -83,24 +85,24 @@ class ProjectCard extends Component {
     return (
       <Col md="3">
         {this.state.loaded &&
-          <Card tag="a" className="card-doc" onClick={this.toggleModal} style={{ cursor: "pointer" }}>
+          <Card tag="a" className="card-doc project-card" onClick={this.toggleModal} style={{ cursor: "pointer" }}>
             <CardHeader>
-              <CardTitle tag="h4">
+              <CardTitle tag="h5" className="project-card-title">
                 {this.state.name}
               </CardTitle>
-              <h5 className="card-category">
-                {this.state.ts}
-              </h5>
+            </CardHeader>
               <CardText>
+                <h5 className="card-category">
+                  Created {moment.unix(`${this.state.ts / 1000 }`).format('LL')}
+                </h5>
                 {this.state.url}
               </CardText>
-            </CardHeader>
-            <CardBody>
-              {this.state.id === this.state.currentProject ?
-                <Button color="secondary" disabled>Current project</Button> :
-                <Button color="primary" onClick={this.setActiveProject}>Activate project</Button>
+              <CardBody>
+              {this.state.id == this.state.currentProject ?
+                <Button className="project-card-button" disabled>Current project</Button> :
+                <Button className="project-card-button" onClick={() => this.setActiveProject}>Activate project</Button>
               }
-            </CardBody>
+              </CardBody>
           </Card>
         }
         <Modal style={{maxWidth: '1600px', width: '50%'}} isOpen={this.state.showModal} toggle={this.toggleModal} size="lg">

@@ -17,10 +17,6 @@ class Sidebar extends React.Component {
     console.log(props);
   }
 
-  updateSessionStorageWithProject = (project) => {
-    sessionStorage.setItem('projectName', project.name)
-    sessionStorage.setItem('projectID', project.sk.replace("project-", ""))
-  }
   // this creates the intial state of this component based on the collapse routes
   // that it gets through this.props.routes
   getCollapseStates = routes => {
@@ -57,7 +53,11 @@ class Sidebar extends React.Component {
       if (prop.redirect) {
         return null;
       }
+      if (prop.name == "Account" || prop.name == "Projects") {
+        return null;
+      }
       if (prop.collapse) {
+        console.log(prop.name)
         var st = {};
         st[prop["state"]] = !this.state[prop.state];
         return (
@@ -163,30 +163,26 @@ class Sidebar extends React.Component {
                   this.setState({ openAvatar: !this.state.openAvatar })
                 }
               >
-                <span>
-                  {sessionStorage.getItem('projectName') ? sessionStorage.getItem('projectName') : "All Projects"}
+                <h6 style={{ fontWeight: "heavy", color: 'black'}}>
+                  All Projects
                   <b className="caret" />
-                </span>
+                </h6>
               </a>
               <Collapse isOpen={this.state.openAvatar}>
                 <ul className="nav">
-                  {this.props.project != null &&
-                    this.props.projects.map((project, key) => (
-                    <li
-                      id={key}
-                      onClick={this.updateSessionStorageWithProject(project)}
+                  <li
+                    onClick={() => this.props.history.push('/project/projects')}
+                  >
+                    <NavLink
+                      to="/project/sessions"
+                      activeClassName=""
                     >
-                      <NavLink
-                        to="/project/sessions"
-                        activeClassName=""
-                      >
-                        <span className="sidebar-mini-icon">{key + 1}</span>
-                        <span className="sidebar-normal">
-                          {project.name}
-                        </span>
-                      </NavLink>
-                    </li>
-                  ))}
+                      <span className="sidebar-mini-icon">+</span>
+                      <span className="sidebar-normal">
+                        Switch Project
+                      </span>
+                    </NavLink>
+                  </li>
                 </ul>
               </Collapse>
             </div>

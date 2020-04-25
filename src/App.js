@@ -40,8 +40,9 @@ class App extends Component {
     return (
       <Router history={hist}>
         <Switch className="mountains">
-          <Route path="/auth" render={props => <AuthLayout {...props} />} />
+          <Route path="/auth/login" render={props => <AuthLayout {...props} />} />
           <PrivateRoute path="/project" component={props => <AdminLayout {...props} />} />
+          <Redirect from="/" to="project/projects" />
         </Switch>
       </Router>
     )

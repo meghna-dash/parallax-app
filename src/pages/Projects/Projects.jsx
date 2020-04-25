@@ -5,6 +5,9 @@ import {
   Card,
   CardHeader,
   CardTitle,
+  CardSubtitle,
+  CardText,
+  CardBody,
   Col,
   Form,
   FormGroup,
@@ -18,6 +21,7 @@ import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
 import { uuid } from 'uuidv4';
+import './projects.css';
 
 class Projects extends Component {
   constructor(props) {
@@ -130,12 +134,20 @@ class Projects extends Component {
             />
           ))}
           <Col md="3">
-            <Card tag="a" className="card-doc" onClick={this.toggleNewProjectModal} style={{ cursor: "pointer" }}>
+            <Card
+              tag="a"
+              className="card-doc project-card"
+              onClick={this.toggleNewProjectModal}
+              style={{ cursor: "pointer" }}>
               <CardHeader>
-                <CardTitle tag="h4">
+                <CardTitle tag="h5" className="project-card-title">
                   Create New Project
                 </CardTitle>
+                <CardSubtitle>
+                  Create a new project to add Parallax to your product. This project will serve your entire domain or product.
+                </CardSubtitle>
               </CardHeader>
+              <CardBody/>
             </Card>
           </Col>
         </Row>
