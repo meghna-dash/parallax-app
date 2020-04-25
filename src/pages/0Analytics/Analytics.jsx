@@ -4,20 +4,21 @@ import GuideViewsGraph from './GuideViewsGraph';
 import NewUserEngagement from './NewUserEngagement';
 import GuidesTable from '../1Guides/GuidesTable';
 import MostViewedGuide from './MostViewedGuide';
+import './analytics.css';
 
 class Sessions extends Component {
   render() {
     return (
-      <div className="content">
-        <row>
+      <div className="content" style={{ paddingBottom: '20px'}}>
+        <Row>
           <Col lg="8">
             <GuideViewsGraph />
           </Col>
           <Col lg="4">
             <NewUserEngagement />
           </Col>
-        </row>
-        <row>
+        </Row>
+        <Row>
           <Col lg="4">
             <GuidesTable />
           </Col>
@@ -27,7 +28,7 @@ class Sessions extends Component {
           <Col lg="4">
             <Card />
           </Col>
-        </row>
+        </Row>
       </div>
     );
   }
