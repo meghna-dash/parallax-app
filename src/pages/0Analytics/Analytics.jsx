@@ -9,26 +9,13 @@ import './analytics.css';
 class Sessions extends Component {
   render() {
     return (
-      <div className="content" style={{ paddingBottom: '20px'}}>
-        <Row>
-          <Col lg="8">
-            <GuideViewsGraph />
-          </Col>
-          <Col lg="4">
-            <NewUserEngagement />
-          </Col>
-        </Row>
-        <Row>
-          <Col lg="4">
-            <GuidesTable />
-          </Col>
-          <Col lg="4">
-            <MostViewedGuide />
-          </Col>
-          <Col lg="4">
-            <Card />
-          </Col>
-        </Row>
+      <div className="content analytics-cards" style={{ paddingBottom: '20px'}}>
+        <div class="grid">
+          <div class="grid-guide-views"><GuideViewsGraph /></div>
+          <div class="grid-most-viewed-guide"><MostViewedGuide /></div>
+          <div class="grid-guides"><GuidesTable /></div>
+          <div class="grid-new-user-engagement"><NewUserEngagement /></div>
+        </div>
       </div>
     );
   }
