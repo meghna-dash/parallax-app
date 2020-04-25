@@ -138,7 +138,8 @@ class Projects extends Component {
               tag="a"
               className="card-doc project-card"
               onClick={this.toggleNewProjectModal}
-              style={{ cursor: "pointer" }}>
+              style={{ cursor: "pointer" }}
+            >
               <CardHeader>
                 <CardTitle tag="h5" className="project-card-title">
                   Create New Project

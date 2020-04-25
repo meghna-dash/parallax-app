@@ -5,6 +5,8 @@ import {
   Card,
   CardHeader,
   CardTitle,
+  CardSubtitle,
+  CardBody,
   Col,
   Form,
   FormGroup,
@@ -63,12 +65,21 @@ class Guides extends Component {
             <GuideCard {...guide} refresh={this.getGuides}/>
           ))}
           <Col md="3">
-            <Card tag="a" className="card-doc" onClick={this.toggleModal} style={{ cursor: "pointer" }}>
+            <Card
+              tag="a"
+              className="card-doc guide-card"
+              onClick={this.toggleModal}
+              style={{ cursor: "pointer" }}
+            >
               <CardHeader>
-                <CardTitle tag="h4">
+                <CardTitle className="guide-card-title" tag="h5">
                   Create New Guide
                 </CardTitle>
+                <CardSubtitle>
+                  Create a new guide to show your users. Upload a video, add a description, and we will take care of the rest.
+                </CardSubtitle>
               </CardHeader>
+              <CardBody/>
             </Card>
           </Col>
         </Row>

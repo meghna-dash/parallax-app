@@ -1,0 +1,6 @@
+.sidebar-project-name {
+  font-weight: bolder;
+  color: black;
+  overflow-wrap: break-word;
+  width: 200px;
+}

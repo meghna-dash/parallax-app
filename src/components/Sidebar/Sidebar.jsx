@@ -6,6 +6,7 @@ import PerfectScrollbar from "perfect-scrollbar";
 
 import avatar from "../../assets/img/project.png";
 import logo from "../../assets/img/logo.png";
+import './sidebar.css';
 
 var ps;
 
@@ -163,8 +164,8 @@ class Sidebar extends React.Component {
                   this.setState({ openAvatar: !this.state.openAvatar })
                 }
               >
-                <h6 style={{ fontWeight: "heavy", color: 'black'}}>
-                  All Projects
+                <h6 className="sidebar-project-name">
+                  {sessionStorage.getItem("projectName")}
                   <b className="caret" />
                 </h6>
               </a>
@@ -174,7 +175,7 @@ class Sidebar extends React.Component {
                     onClick={() => this.props.history.push('/project/projects')}
                   >
                     <NavLink
-                      to="/project/sessions"
+                      to="/project/projects"
                       activeClassName=""
                     >
                       <span className="sidebar-mini-icon">+</span>

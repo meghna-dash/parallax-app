@@ -16,6 +16,7 @@ import {
 import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
+import './guides.css';
 
 class GuideCard extends Component {
   constructor(props) {
@@ -67,23 +68,29 @@ class GuideCard extends Component {
   render() {
     return (
       <Col md="3">
-        <Card tag="a" className="card-doc" onClick={this.toggleModal} style={{ cursor: "pointer" }}>
+        <Card tag="a" className="card-doc guide-card" onClick={this.toggleModal} style={{ cursor: "pointer" }}>
           <CardHeader>
-            <CardTitle tag="h4">
+            <CardTitle className="guide-card-title" tag="h5">
               {this.state.title}
             </CardTitle>
           </CardHeader>
-          <CardBody>
+          <CardText>
             <h5 className="card-category">
               {this.state.description}
             </h5>
             <h5 className="card-category">
               {this.state.views} views
             </h5>
-          </CardBody>
+          </CardText>
+          <CardBody/>
         </Card>
 
-        <Modal style={{maxWidth: '1600px', width: '50%'}} isOpen={this.state.showModal} toggle={this.toggleModal} size="lg">
+        <Modal
+          className="guide-view-modal"
+          isOpen={this.state.showModal}
+          toggle={this.toggleModal}
+          size="lg"
+        >
           <Alert color="danger" isOpen={this.state.showAlert} toggle={this.toggleAlert}>
             Are you sure you want to delete this guide? It cannot be recovered after deleting.
             <br />
@@ -94,16 +101,8 @@ class GuideCard extends Component {
               No
             </Button>
           </Alert>
-          <div className="modal-header justify-content-right">
-            <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.toggleModal}>
-              <span aria-hidden="true">×</span>
-            </button>
-            <h5 className="modal-title">{this.state.title}</h5>
-          </div>
-          <ModalBody>
-            {this.state.description}
-            <br />
-            <div style={{ alignItems: "center", margin: "auto", width: "80%" }}>
+          <div class="card">
+            <div style={{ background: 'black'}} >
               <video
                 id="guide-video"
                 controlsList="nodownload"
@@ -111,16 +110,37 @@ class GuideCard extends Component {
                 preload="metadata"
                 fluid="true"
                 responsive="true"
+                height="450px"
+                style={{ width: "100%" }}
               >
                 <source src={this.state.path} type="video/mp4"/>
               </video>
             </div>
-          </ModalBody>
-          <ModalFooter>
-            <Button style={{ marginLeft: "auto", marginRight: "auto" }} color="secondary" onClick={this.toggleAlert}>
+            <div class="card-text">
+              <span class="date">4 days ago</span>
+              <h2 className="modal-title">{this.state.title}</h2>
+              <p>{this.state.description}</p>
+            </div>
+            <button
+              className="btn-link btn btn-primary guide-delete-button"
+              onClick={this.toggleAlert}>
               Delete Guide
-            </Button>
-          </ModalFooter>
+            </button>
+            <div class="card-stats">
+              <div class="stat">
+                <div class="value">ALL</div>
+                <div class="type">routes</div>
+              </div>
+              <div class="stat border">
+                <div class="value">5,123</div>
+                <div class="type">views</div>
+              </div>
+              <div class="stat">
+                <div class="value">4,235</div>
+                <div class="type">users</div>
+              </div>
+            </div>
+          </div>
         </Modal>
       </Col>
     )
