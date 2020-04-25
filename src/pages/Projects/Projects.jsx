@@ -162,30 +162,30 @@ class Projects extends Component {
           </div>
           <ModalBody>
             <Form onSubmit={(e) => this.createNewProject(e)}>
-              <Col>
-                <FormGroup>
-                  <Input
-                    type="textarea"
-                    name="newProjectName"
-                    id="newProjectName"
-                    value={this.state.newProjectName}
-                    placeholder="Project name"
-                    onChange={(e) => {this.handleNewProjectChange(e)}}
-                  />
-                </FormGroup>
-              </Col>
-              <Col>
-                <FormGroup>
-                  <Input
-                    type="textarea"
-                    name="newProjectUrl"
-                    id="newProjectUrl"
-                    value={this.state.newProjectUrl}
-                    placeholder="Website URL"
-                    onChange={(e) => {this.handleNewProjectChange(e)}}
-                  />
-                </FormGroup>
-              </Col>
+              <label>Project Name</label>
+              <FormGroup>
+                <Input
+                  type="textarea"
+                  name="newProjectName"
+                  id="newProjectName"
+                  value={this.state.newProjectName}
+                  placeholder="Project Name"
+                  onChange={(e) => {this.handleNewProjectChange(e)}}
+                />
+              </FormGroup>
+              <br/>
+              <label>Website URL</label>
+              <FormGroup>
+                <Input
+                  type="textarea"
+                  name="newProjectUrl"
+                  id="newProjectUrl"
+                  value={this.state.newProjectUrl}
+                  placeholder="Website URL"
+                  onChange={(e) => {this.handleNewProjectChange(e)}}
+                />
+              </FormGroup>
+
               <div align="center">
                 <Button color="primary" onClick={this.createNewProject}>
                   Submit
