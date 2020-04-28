@@ -121,11 +121,11 @@ class GuideCard extends Component {
               <h2 className="modal-title">{this.state.title}</h2>
               <p>{this.state.description}</p>
             </div>
-            <button
+            <Button
               className="btn-link btn btn-primary guide-delete-button"
               onClick={this.toggleAlert}>
               Delete Guide
-            </button>
+            </Button>
             <div class="card-stats">
               <div class="stat">
                 <div class="value">ALL</div>
