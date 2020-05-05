@@ -172,10 +172,10 @@ class Sidebar extends React.Component {
               <Collapse isOpen={this.state.openAvatar}>
                 <ul className="nav">
                   <li
-                    onClick={() => this.props.history.push('/project/projects')}
+                    onClick={() => this.props.history.push('/app/projects')}
                   >
                     <NavLink
-                      to="/project/projects"
+                      to="/app/projects"
                       activeClassName=""
                     >
                       <span className="sidebar-mini-icon">+</span>

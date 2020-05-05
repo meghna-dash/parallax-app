@@ -21,7 +21,8 @@ class Admin extends React.Component {
       backgroundColor: "white",
       activeColor: "info",
       sidebarMini: false,
-      projects: []
+      projects: [],
+      loaded: false
     };
   }
 
@@ -55,7 +56,7 @@ class Admin extends React.Component {
       if (prop.collapse) {
         return this.getRoutes(prop.views);
       }
-      if (prop.layout === "/project") {
+      if (prop.layout === "/app") {
         return (
           <Route
             path={prop.layout + prop.path}
@@ -93,7 +94,7 @@ class Admin extends React.Component {
         }
       ));
       this.setState({
-        projects: response.data.getUser[0].projects,
+        projects: response.data.getUser[0].projects
       });
       const currProjectID = response.data.getUser[0].projects[0];
       sessionStorage.setItem("projectID", currProjectID);
@@ -106,6 +107,10 @@ class Admin extends React.Component {
       ));
       const project = resp.data.getProject[0];
       sessionStorage.setItem("projectName", project.name);
+
+      this.setState({
+        loaded: true
+      });
     }
     catch (error) {
       console.log('error', error);
@@ -127,9 +132,11 @@ class Admin extends React.Component {
             {...this.props}
             handleMiniClick={this.handleMiniClick}
           />
-          <Switch style={{ backgroundColor: 'red'}}>
-            {this.getRoutes(routes)}
-          </Switch>
+          { this.state.loaded &&
+            <Switch style={{ backgroundColor: 'red'}}>
+              {this.getRoutes(routes)}
+            </Switch>
+          }
           <Footer fluid />
         </div>
       </div>

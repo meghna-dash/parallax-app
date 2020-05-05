@@ -10,21 +10,21 @@ const routes = [
     name: "Projects",
     icon: "nc-icon nc-single-copy-04",
     component: Projects,
-    layout: "/project"
+    layout: "/app"
   },
   {
     path: "/analytics",
     name: "Analytics",
     icon: "nc-icon nc-layout-11",
     component: Analytics,
-    layout: "/project"
+    layout: "/app"
   },
   {
     path: "/guides",
     name: "Guides",
     icon: "nc-icon nc-bullet-list-67",
     component: Guides,
-    layout: "/project"
+    layout: "/app"
   },
   {
     collapse: true,

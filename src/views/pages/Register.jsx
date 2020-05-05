@@ -18,6 +18,7 @@ import {
   Col
 } from "reactstrap";
 import { Auth } from "aws-amplify";
+import "./login.css";
 
 class Register extends Component {
   constructor(props) {
@@ -80,7 +81,9 @@ class Register extends Component {
     event.preventDefault();
     try {
       await Auth.confirmSignUp(this.state.email, this.state.verificationCode);
-      await Auth.signIn(this.state.email, this.state.password);
+      await Auth.signIn(this.state.email, this.state.password)
+      .then(user => sessionStorage.setItem("userID", user.username))
+      .then(() => this.props.history.push("/app/projects"))
       console.log("Logged in");
     } catch (error) {
       console.log(error.message);
@@ -207,15 +210,14 @@ class Register extends Component {
                 <CardFooter>
                   {this.state.shouldVerify ?
                     <Button
-                      className="btn-round"
+                      className="btn-round login-button"
                       color="info"
                       onClick={e => {this.confirmNewUser(e)}}
                     >
                       Verify
                     </Button> :
                     <Button
-                      className="btn-round"
-                      color="info"
+                      className="btn-round login-button"
                       onClick={e => {this.handleSignUp(e)}}
                     >
                       Get Started
@@ -229,7 +231,10 @@ class Register extends Component {
         <div
           className="full-page-background"
           style={{
-            backgroundImage: `url(${require("assets/img/bg/jan-sendereks.jpg")})`
+            backgroundImage: `url(${require("../../assets/img/mountains.png")})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+            backgroundPosition: "bottom"
           }}
         />
       </div>

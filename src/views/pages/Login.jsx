@@ -19,6 +19,7 @@ import {
 import { Auth } from "aws-amplify";
 import { withRouter } from "react-router-dom";
 import { Redirect } from "react-router";
+import './login.css';
 
 class Login extends Component {
   constructor(props) {
@@ -54,7 +55,7 @@ class Login extends Component {
       //   toDashboard: true
       // })))
       // .then(user => this.props.updateAuthenticationState(true))
-      .then(() => this.props.history.push("/project/guides"))
+      .then(() => this.props.history.push("/app/guides"))
     } catch (error) {
       this.setState({
         message: error.message,
@@ -123,8 +124,7 @@ class Login extends Component {
                   <CardFooter>
                     <Button
                       block
-                      className="btn-round mb-3"
-                      color="warning"
+                      className="btn-round mb-3 login-button"
                       onClick={e => {this.handleSignIn(e)}}
                     >
                       Log In
@@ -138,7 +138,10 @@ class Login extends Component {
         <div
           className="full-page-background"
           style={{
-            backgroundImage: `url(${require("../../assets/img/bg/fabio-mangione.jpg")})`
+            backgroundImage: `url(${require("../../assets/img/mountains.png")})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+            backgroundPosition: "bottom"
           }}
         />
       </div>
