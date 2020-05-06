@@ -63,7 +63,7 @@ class NewGuideModal extends Component {
   }
 
   async putGuidesInDynamo() {
-    console.log("START")
+    console.log("START");
     console.log({
       pk: this.state.projectID,
       sk: "guide_" + this.state.guideID,
@@ -73,7 +73,7 @@ class NewGuideModal extends Component {
       views: 0,
       path: this.state.bucketURL + this.state.projectID + "/videos/" + this.state.guideID + ".mp4"
     })
-    console.log("END")
+    console.log("END");
 
     try {
       const response = await API.graphql(graphqlOperation(mutations.putGuides,
