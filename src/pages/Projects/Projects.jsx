@@ -22,6 +22,7 @@ import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
 import { uuid } from 'uuidv4';
 import './projects.css';
+import NewProject from '../../assets/img/new_project.svg';
 
 class Projects extends Component {
   constructor(props) {
@@ -123,7 +124,7 @@ class Projects extends Component {
     return (
       <div className="content">
         <Alert color="danger" isOpen={this.state.showAlert} toggle={this.toggleAlert}>
-          We do not currently support more than one project per user!
+          We do not currently support more than one project per user.
         </Alert>
         <Row>
           {this.state.projects.map(project => (
@@ -153,45 +154,55 @@ class Projects extends Component {
           </Col>
         </Row>
 
-        <Modal style={{maxWidth: '1600px', width: '50%'}} isOpen={this.state.showModal} toggle={this.toggleNewProjectModal} size="lg">
+        <Modal style={{maxWidth: '2300px', width: '60%'}} isOpen={this.state.showModal} toggle={this.toggleNewProjectModal} size="lg">
           <div className="modal-header justify-content-right">
             <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.toggleNewProjectModal}>
               <span aria-hidden="true">×</span>
             </button>
-            <h5 className="modal-title">Create New Project</h5>
+            <h3 className="modal-title">Create New Project</h3>
           </div>
           <ModalBody>
-            <Form onSubmit={(e) => this.createNewProject(e)}>
-              <label>Project Name</label>
-              <FormGroup>
-                <Input
-                  type="textarea"
-                  name="newProjectName"
-                  id="newProjectName"
-                  value={this.state.newProjectName}
-                  placeholder="Project Name"
-                  onChange={(e) => {this.handleNewProjectChange(e)}}
-                />
-              </FormGroup>
-              <br/>
-              <label>Website URL</label>
-              <FormGroup>
-                <Input
-                  type="textarea"
-                  name="newProjectUrl"
-                  id="newProjectUrl"
-                  value={this.state.newProjectUrl}
-                  placeholder="Website URL"
-                  onChange={(e) => {this.handleNewProjectChange(e)}}
-                />
-              </FormGroup>
+            <Row>
+              <Col lg="6">
+                <img src={NewProject} />
+              </Col>
+              <Col lg="6">
+                <h5 style={{ padding: "70px 0", marginBottom: '24px' }}>
+                  Create a new project to add Parallax to your product. This project will serve your entire domain or product.
+                </h5>
+                <Form onSubmit={(e) => this.createNewProject(e)} style={{ padding: "0px"}}>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      name="newProjectName"
+                      id="newProjectName"
+                      value={this.state.newProjectName}
+                      required
+                      onChange={(e) => {this.handleNewProjectChange(e)}}
+                    />
+                    <label>Project Name</label>
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      required
+                      name="newProjectUrl"
+                      id="newProjectUrl"
+                      value={this.state.newProjectUrl}
+                      onChange={(e) => {this.handleNewProjectChange(e)}}
+                    />
+                    <label>Website URL</label>
+                  </div>
+                  </Form>
+              </Col>
 
-              <div align="center">
-                <Button color="primary" onClick={this.createNewProject}>
-                  Submit
-                </Button>
-              </div>
-            </Form>
+            </Row>
+            <div align="center">
+              <Button onClick={this.createNewProject} style={{ fontSize: "1em", backgroundColor: "#f7598b"}}>
+                Create Project
+              </Button>
+            </div>
+
           </ModalBody>
         </Modal>
       </div>
