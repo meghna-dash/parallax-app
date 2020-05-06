@@ -163,6 +163,7 @@ class Sidebar extends React.Component {
                 onClick={() =>
                   this.setState({ openAvatar: !this.state.openAvatar })
                 }
+                style={{ cursor: "pointer"}}
               >
                 <h6 className="sidebar-project-name">
                   {sessionStorage.getItem("projectName")}
