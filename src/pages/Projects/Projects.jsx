@@ -128,13 +128,6 @@ class Projects extends Component {
           We do not currently support more than one project per user.
         </Alert>
         <Row>
-          {this.state.projects ? this.state.projects.map(project => (
-            <ProjectCard
-              id={project}
-              currentProject={this.state.currentProject}
-              refresh={this.getProjects}
-            />
-          )) : null }
           <Col md="3">
             <Card
               tag="a"
@@ -153,6 +146,13 @@ class Projects extends Component {
               <CardBody/>
             </Card>
           </Col>
+          {this.state.projects[0] !== null && this.state.projects[0] !== undefined ? this.state.projects.map(project => (
+            <ProjectCard
+              id={project}
+              currentProject={this.state.currentProject}
+              refresh={this.getProjects}
+            />
+          )) : null }
         </Row>
 
         <Modal style={{maxWidth: '2300px', width: '60%'}} isOpen={this.state.showModal} toggle={this.toggleNewProjectModal} size="lg">
