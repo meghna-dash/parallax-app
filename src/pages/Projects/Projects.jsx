@@ -69,7 +69,7 @@ class Projects extends Component {
   }
 
   createNewProject = async () => {
-    if (!this.state.projects.length > 0 && this.state.loaded) {
+    if (!this.state.projects && this.state.loaded) {
       const id = uuid();
       try {
         const response = await API.graphql(graphqlOperation(mutations.putProject,
@@ -80,7 +80,7 @@ class Projects extends Component {
             url: this.state.newProjectUrl,
             isRecording: true,
             creator: sessionStorage.getItem("userID"),
-            dateCreated: Date.now().toString()
+            ts: Date.now().toString()
           }
         ));
         const resp = await API.graphql(graphqlOperation(mutations.updateUserProjects,
