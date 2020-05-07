@@ -45,6 +45,18 @@ export const getSessions = /* GraphQL */ `
       sk
       ts
       fpID
+      guides
+    }
+  }
+`;
+export const getSessionsByTs = /* GraphQL */ `
+  query GetSessionsByTs($pk: String, $sk: String, $ts: AWSTimestamp) {
+    getSessionsByTS(pk: $pk, sk: $sk, ts: $ts) {
+      pk
+      sk
+      ts
+      fpID
+      guides
     }
   }
 `;

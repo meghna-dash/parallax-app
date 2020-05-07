@@ -85,7 +85,7 @@ class Admin extends React.Component {
   };
 
   async queryForUsersProjects() {
-    console.log(" query for projects ")
+    console.log("query for projects")
     try {
       const response = await API.graphql(graphqlOperation(queries.getUser,
         {
@@ -94,19 +94,22 @@ class Admin extends React.Component {
         }
       ));
       this.setState({
-        projects: response.data.getUser[0].projects
+        projects: response.data.getUser[0].projects ? response.data.getUser[0].projects : null
       });
-      const currProjectID = response.data.getUser[0].projects[0];
-      sessionStorage.setItem("projectID", currProjectID);
 
-      const resp = await API.graphql(graphqlOperation(queries.getProject,
-        {
-          pk: currProjectID,
-          sk: "project"
-        }
-      ));
-      const project = resp.data.getProject[0];
-      sessionStorage.setItem("projectName", project.name);
+      if(this.state.projects) {
+        const currProjectID = response.data.getUser[0].projects[0];
+        sessionStorage.setItem("projectID", currProjectID);
+
+        const resp = await API.graphql(graphqlOperation(queries.getProject,
+          {
+            pk: currProjectID,
+            sk: "project"
+          }
+        ));
+        const project = resp.data.getProject[0];
+        sessionStorage.setItem("projectName", project.name);
+      }
 
       this.setState({
         loaded: true

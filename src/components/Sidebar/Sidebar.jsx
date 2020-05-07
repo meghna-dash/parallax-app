@@ -166,7 +166,7 @@ class Sidebar extends React.Component {
                 style={{ cursor: "pointer"}}
               >
                 <h6 className="sidebar-project-name">
-                  {sessionStorage.getItem("projectName")}
+                  {sessionStorage.getItem("projectName") ? sessionStorage.getItem("projectName") : "No Projects"}
                   <b className="caret" />
                 </h6>
               </a>

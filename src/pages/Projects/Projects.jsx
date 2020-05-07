@@ -52,8 +52,8 @@ class Projects extends Component {
         }
       ));
       this.setState({
-        projects: response.data.getUser[0].projects,
-        currentProject: response.data.getUser[0].currentProject,
+        projects: response.data.getUser[0].projects ? response.data.getUser[0].projects : null,
+        currentProject: response.data.getUser[0].currentProject ? response.data.getUser[0].currentProject : null,
         loaded: true
       });
     }
@@ -127,13 +127,13 @@ class Projects extends Component {
           We do not currently support more than one project per user.
         </Alert>
         <Row>
-          {this.state.projects.map(project => (
+          {this.state.projects ? this.state.projects.map(project => (
             <ProjectCard
               id={project}
               currentProject={this.state.currentProject}
               refresh={this.getProjects}
             />
-          ))}
+          )) : null }
           <Col md="3">
             <Card
               tag="a"

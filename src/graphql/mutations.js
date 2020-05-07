@@ -62,6 +62,26 @@ export const putProject = /* GraphQL */ `
     }
   }
 `;
+export const putUser = /* GraphQL */ `
+  mutation PutUser(
+    $pk: String
+    $sk: String
+    $projects: [String]
+    $currentProject: String
+  ) {
+    putUser(
+      pk: $pk
+      sk: $sk
+      projects: $projects
+      currentProject: $currentProject
+    ) {
+      pk
+      sk
+      projects
+      currentProject
+    }
+  }
+`;
 export const updateUser = /* GraphQL */ `
   mutation UpdateUser($pk: String!, $sk: String!, $currentProject: String) {
     updateUser(pk: $pk, sk: $sk, currentProject: $currentProject) {

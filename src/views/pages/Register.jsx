@@ -19,6 +19,8 @@ import {
 } from "reactstrap";
 import { Auth } from "aws-amplify";
 import "./login.css";
+import { API, graphqlOperation } from 'aws-amplify';
+import * as mutations from '../../graphql/mutations';
 
 class Register extends Component {
   constructor(props) {
@@ -80,13 +82,31 @@ class Register extends Component {
   async confirmNewUser(event) {
     event.preventDefault();
     try {
-      await Auth.confirmSignUp(this.state.email, this.state.verificationCode);
+      await Auth.confirmSignUp(this.state.email, this.state.verificationCode)
       await Auth.signIn(this.state.email, this.state.password)
       .then(user => sessionStorage.setItem("userID", user.username))
       .then(() => this.props.history.push("/app/projects"))
+      .then(() => this.putNewUserInDynamo());
       console.log("Logged in");
     } catch (error) {
       console.log(error.message);
+    }
+  }
+
+  putNewUserInDynamo = async () => {
+    console.log("PUT NEW USER IN DYNAMO")
+    try {
+      const response = await API.graphql(graphqlOperation(mutations.putUser,
+        {
+          pk: sessionStorage.getItem("userID"),
+          sk: "user",
+          projects: ["none"],
+          currentProject: "No Projects Created",
+        }
+      ))
+    }
+    catch (error) {
+      console.log('error', error);
     }
   }
 
