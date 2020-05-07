@@ -94,10 +94,10 @@ class Admin extends React.Component {
         }
       ));
       this.setState({
-        projects: response.data.getUser[0].projects ? response.data.getUser[0].projects : null
+        projects: response.data.getUser[0].projects !== null && response.data.getUser[0].projects !== undefined ? response.data.getUser[0].projects : null
       });
 
-      if(this.state.projects) {
+      if(this.state.projects[0]) {
         const currProjectID = response.data.getUser[0].projects[0];
         sessionStorage.setItem("projectID", currProjectID);
 

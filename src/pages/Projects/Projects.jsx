@@ -69,7 +69,7 @@ class Projects extends Component {
   }
 
   createNewProject = async () => {
-    if (this.state.projects.length < 1 && this.state.loaded) {
+    if (!this.state.projects[0] !== null && !this.state.projects[0] !== undefined && this.state.loaded) {
       const id = uuid();
       try {
         const response = await API.graphql(graphqlOperation(mutations.putProject,
@@ -95,6 +95,7 @@ class Projects extends Component {
           newProjectName: "",
           newProjectUrl: ""
         });
+        this.toggleNewProjectModal();
       }
       catch (error) {
         console.log('error', error);
@@ -170,7 +171,7 @@ class Projects extends Component {
                 <h5 style={{ padding: "70px 0", marginBottom: '24px' }}>
                   Create a new project to add Parallax to your product. This project will serve your entire domain or product.
                 </h5>
-                <Form onSubmit={(e) => this.createNewProject(e)} style={{ padding: "0px"}}>
+                <Form style={{ padding: "0px"}}>
                   <div class="form-group">
                     <input
                       type="text"
@@ -193,15 +194,15 @@ class Projects extends Component {
                     />
                     <label>Website URL</label>
                   </div>
+                  <div align="center">
+                    <Button onClick={(e) => this.createNewProject(e)} style={{ fontSize: "1em", backgroundColor: "#f7598b"}}>
+                      Create Project
+                    </Button>
+                  </div>
                   </Form>
               </Col>
-
             </Row>
-            <div align="center">
-              <Button onClick={this.createNewProject} style={{ fontSize: "1em", backgroundColor: "#f7598b"}}>
-                Create Project
-              </Button>
-            </div>
+
 
           </ModalBody>
         </Modal>
