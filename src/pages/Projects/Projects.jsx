@@ -29,7 +29,7 @@ class Projects extends Component {
     super(props);
 
     this.state = {
-      projects: [],
+      projects: null,
       currentProject: null,
       showModal: false,
       showAlert: false,
@@ -52,7 +52,7 @@ class Projects extends Component {
         }
       ));
       this.setState({
-        projects: response.data.getUser[0].projects ? response.data.getUser[0].projects : null,
+        projects: response.data.getUser[0].projects.length > 0 ? response.data.getUser[0].projects : null,
         currentProject: response.data.getUser[0].currentProject ? response.data.getUser[0].currentProject : null,
         loaded: true
       });
@@ -69,7 +69,7 @@ class Projects extends Component {
   }
 
   createNewProject = async () => {
-    if (!this.state.projects[0] !== null && !this.state.projects[0] !== undefined && this.state.loaded) {
+    if (!this.state.projects.length > 0 && this.state.loaded) {
       const id = uuid();
       try {
         const response = await API.graphql(graphqlOperation(mutations.putProject,
@@ -128,6 +128,13 @@ class Projects extends Component {
           We do not currently support more than one project per user.
         </Alert>
         <Row>
+          {this.state.projects && this.state.projects.map(project => (
+            <ProjectCard
+              id={project}
+              currentProject={this.state.currentProject}
+              refresh={this.getProjects}
+            />
+          ))}
           <Col md="3">
             <Card
               tag="a"
@@ -146,13 +153,6 @@ class Projects extends Component {
               <CardBody/>
             </Card>
           </Col>
-          {this.state.projects[0] !== null && this.state.projects[0] !== undefined ? this.state.projects.map(project => (
-            <ProjectCard
-              id={project}
-              currentProject={this.state.currentProject}
-              refresh={this.getProjects}
-            />
-          )) : null }
         </Row>
 
         <Modal style={{maxWidth: '2300px', width: '60%'}} isOpen={this.state.showModal} toggle={this.toggleNewProjectModal} size="lg">
