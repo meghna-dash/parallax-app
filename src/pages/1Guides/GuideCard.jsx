@@ -132,11 +132,11 @@ class GuideCard extends Component {
                 <div class="type">routes</div>
               </div>
               <div class="stat border">
-                <div class="value">5,123</div>
+                <div class="value">{this.state.views}</div>
                 <div class="type">views</div>
               </div>
               <div class="stat">
-                <div class="value">4,235</div>
+                <div class="value">0</div>
                 <div class="type">users</div>
               </div>
             </div>
