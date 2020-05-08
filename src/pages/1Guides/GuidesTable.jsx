@@ -43,7 +43,7 @@ class GuidesTable extends Component {
     try {
       const response = await API.graphql(graphqlOperation(queries.getGuides,
         {
-          pk: "e7f31b8e-04fe-4313-bad4-4bb118428def",
+          pk: sessionStorage.getItem("projectID"),
           sk: "guide"
         }
       ))

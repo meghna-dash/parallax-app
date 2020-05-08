@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" class="perfect-scrollbar-off">
   <head>
+    <script type=text/javascript>
+      var projectID="d89554e3-45b1-4fcb-aeef-db8d601eceb5";
+      window.sessionStorage.setItem("parallax-pid", projectID);
+      document.addEventListener("DOMContentLoaded", (event) => {
+        var head = document.getElementsByTagName("head").item(0);
+        var recorderScript = document.createElement("script");
+        var injectScript = document.createElement("script");
+        recorderScript.setAttribute("type", "text/javascript");
+        injectScript.setAttribute("type", "text/javascript");
+        recorderScript.setAttribute("src", "https://static.parallaxux.com/recorder.js");
+        injectScript.setAttribute("src", "https://static.parallaxux.com/inject.js");
+        head.appendChild(recorderScript);
+        head.appendChild(injectScript);
+      });
+    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">

@@ -96,6 +96,7 @@ class NewGuideModal extends Component {
 
   saveFiletoS3 = () => {
     console.log("file", this.state.selectedFile)
+    console.log(this.state.projectID)
     const videoID = this.state.projectID + "/videos/" + this.state.guideID;
     axios(
       "https://npmvy24qlj.execute-api.us-east-1.amazonaws.com/dev/upload?fileName=" +
