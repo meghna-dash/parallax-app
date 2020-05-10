@@ -14,9 +14,9 @@ import {
   Col,
   UncontrolledTooltip
 } from "reactstrap";
-import NewGuideModal from './NewGuide/NewGuideModal';
 import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
+import "./guides.css";
 
 class GuidesTable extends Component {
   constructor(props) {
@@ -29,14 +29,11 @@ class GuidesTable extends Component {
         views: "Views",
       }]
     };
-    this.toggleModal = this.toggleModal.bind(this);
     this.queryForGuides = this.queryForGuides.bind(this);
   }
 
-  toggleModal() {
-    this.setState({
-      modal: !this.state.modal,
-    })
+  goToGuides = () => {
+    this.props.history.push("/app/guides");
   }
 
   async queryForGuides() {
@@ -46,10 +43,9 @@ class GuidesTable extends Component {
           pk: sessionStorage.getItem("projectID"),
           sk: "guide"
         }
-      ))
-      console.log(response.data.getGuides);
+      ));
       this.setState({
-        guides: response.data.getGuides,
+        guides: response.data.getGuides.length > 3 ? response.data.getGuides.slice(0, 3) : response.data.getGuides,
       })
     }
     catch (error) {
@@ -67,26 +63,21 @@ class GuidesTable extends Component {
       <Card>
         <CardHeader>
           <Button
-            style={{ float: 'right' }}
-            onClick={this.toggleModal}
+            style={{ float: 'right', backgroundColor: "#f7598b" }}
+            onClick={this.goToGuides}
           >
-            + New Guide
+            Edit Guides
           </Button>
-          <NewGuideModal
-            modal={this.state.modal}
-            toggleModal={this.toggleModal}
-          />
-          <CardTitle tag="h4">Guides</CardTitle>
+          <CardTitle tag="h4">Most Popular Guides</CardTitle>
         </CardHeader>
         <CardBody>
           <Table responsive>
             <thead className="text-primary">
-              <tr>
-                <th className="text-center">1</th>
+              <tr className="table-header">
+                <th className="text-center"></th>
                 <th className="text-center">Title</th>
                 <th className="text-center">Description</th>
                 <th className="text-center">Views</th>
-                <th className="text-center">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -96,53 +87,6 @@ class GuidesTable extends Component {
                   <td>{guide.title}</td>
                   <td>{guide.description}</td>
                   <td>{guide.views}</td>
-                  <td className="text-center">
-                    <Button
-                      className="btn-icon"
-                      color="primary"
-                      id="play-tooltip"
-                      size="sm"
-                      type="button"
-                    >
-                      <i className="nc-icon nc-button-play" />
-                    </Button>{" "}
-                    <UncontrolledTooltip
-                      delay={0}
-                      target="play-tooltip"
-                    >
-                      Play
-                    </UncontrolledTooltip>
-                    <Button
-                      className="btn-icon"
-                      color="success"
-                      id="edit-tooltip"
-                      size="sm"
-                      type="button"
-                    >
-                      <i className="fa fa-edit" />
-                    </Button>{" "}
-                    <UncontrolledTooltip
-                      delay={0}
-                      target="edit-tooltip"
-                    >
-                      Edit
-                    </UncontrolledTooltip>
-                    <Button
-                      className="btn-icon"
-                      color="danger"
-                      id="delete-tooltip"
-                      size="sm"
-                      type="button"
-                    >
-                      <i className="fa fa-times" />
-                    </Button>{" "}
-                    <UncontrolledTooltip
-                      delay={0}
-                      target="delete-tooltip"
-                    >
-                      Delete
-                    </UncontrolledTooltip>
-                  </td>
                 </tr>
               )}
             </tbody>

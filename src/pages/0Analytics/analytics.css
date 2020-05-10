@@ -10,8 +10,13 @@
   grid-row-gap: 15px;
 }
 
+.grid-session-views {
+  grid-column: col / span 6;
+  grid-row: row / span 1;
+}
+
 .grid-guide-views {
-  grid-column: col / span 8;
+  grid-column: col 7 / span 6;
   grid-row: row / span 1;
 }
 
@@ -21,11 +26,11 @@
 }
 
 .grid-guides {
-  grid-column: col / span 4;
-  grid-row: row 2/ span 1;
+  grid-column: col 5 / span 8;
+  grid-row: row 2 / span 1;
 }
 
 .grid-new-user-engagement {
-  grid-column: col 5/ span 4;
-  grid-row: row 2/ span 1;
+  grid-column: col / span 4;
+  grid-row: row 2 / span 1;
 }

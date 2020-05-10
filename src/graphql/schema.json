@@ -145,7 +145,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "getSessionsByTS",
+          "name" : "getSessionsTS",
           "description" : null,
           "args" : [ {
             "name" : "pk",
@@ -194,7 +194,7 @@
       }, {
         "kind" : "OBJECT",
         "name" : "Guide",
-        "description" : "  schema {\n###################     query: Query\n###################     mutation: Mutation\n################### }\n################### type Query {\n###################     # Get a single value of type 'Post' by primary key.\n###################     singlePost(id: ID!): Post\n################### }\n################### type Mutation {\n###################     # Put a single value of type 'Post'.\n###################     # If an item exists it's updated. If it does not it's created.\n###################     putPost(id: ID!, title: String!): Post\n################### }\n################### type Post {\n###################     id: ID!\n###################     title: String!\n################### }",
+        "description" : "  schema {\n#####################     query: Query\n#####################     mutation: Mutation\n##################### }\n##################### type Query {\n#####################     # Get a single value of type 'Post' by primary key.\n#####################     singlePost(id: ID!): Post\n##################### }\n##################### type Mutation {\n#####################     # Put a single value of type 'Post'.\n#####################     # If an item exists it's updated. If it does not it's created.\n#####################     putPost(id: ID!, title: String!): Post\n##################### }\n##################### type Post {\n#####################     id: ID!\n#####################     title: String!\n##################### }",
         "fields" : [ {
           "name" : "pk",
           "description" : null,
@@ -710,28 +710,6 @@
             "defaultValue" : null
           }, {
             "name" : "sk",
-            "description" : null,
-            "type" : {
-              "kind" : "SCALAR",
-              "name" : "String",
-              "ofType" : null
-            },
-            "defaultValue" : null
-          }, {
-            "name" : "projects",
-            "description" : null,
-            "type" : {
-              "kind" : "LIST",
-              "name" : null,
-              "ofType" : {
-                "kind" : "SCALAR",
-                "name" : "String",
-                "ofType" : null
-              }
-            },
-            "defaultValue" : null
-          }, {
-            "name" : "currentProject",
             "description" : null,
             "type" : {
               "kind" : "SCALAR",
@@ -1673,23 +1651,6 @@
         "onFragment" : false,
         "onField" : false
       }, {
-        "name" : "deprecated",
-        "description" : null,
-        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
-        "args" : [ {
-          "name" : "reason",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : "\"No longer supported\""
-        } ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
         "name" : "aws_cognito_user_pools",
         "description" : "Tells the service this field/object has access authorized by a Cognito User Pools token.",
         "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
@@ -1778,6 +1739,23 @@
         "description" : "Tells the service this field/object has access authorized by an API key.",
         "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
         "args" : [ ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "deprecated",
+        "description" : null,
+        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
+        "args" : [ {
+          "name" : "reason",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : "\"No longer supported\""
+        } ],
         "onOperation" : false,
         "onFragment" : false,
         "onField" : false

@@ -35,6 +35,10 @@
   margin-right: auto;
 }
 
+.table-header {
+  color: #52469e
+}
+
 .card {
   grid-template-columns: 300px;
   grid-template-rows: 210px 210px 80px;

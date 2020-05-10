@@ -12,7 +12,7 @@ import {
 import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 
-class GuideViewsGraph extends Component {
+class SessionViewsGraph extends Component {
   constructor(props) {
     super(props);
 
@@ -23,7 +23,7 @@ class GuideViewsGraph extends Component {
       datasets: [
         {
           label: "Count",
-          borderColor: "#4c90b2",
+          borderColor: "#6CD098",
           pointRadius: 0,
           pointHoverRadius: 0,
           fill: false,
@@ -81,10 +81,8 @@ class GuideViewsGraph extends Component {
     var now = Date.now();
     const day = 1000 * 60 * 60 * 24;
     this.props.sessions.forEach(s => {
-      if (s.guides) {
-        var dayIndex = 6 - Math.floor(Math.floor(now - s.ts) / day);
-        counts[dayIndex] += s.guides.length;
-      }
+      var dayIndex = 6 - Math.floor(Math.floor(now - s.ts) / day);
+      counts[dayIndex]++;
     });
     return counts;
   }
@@ -101,8 +99,8 @@ class GuideViewsGraph extends Component {
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Guide Views</CardTitle>
-          <p className="card-category">Guide Views Over the Last Week</p>
+          <CardTitle>Sessions</CardTitle>
+          <p className="card-category">Sessions Over the Last Week</p>
         </CardHeader>
         <CardBody>
           <Line
@@ -122,4 +120,4 @@ class GuideViewsGraph extends Component {
   }
 }
 
-export default GuideViewsGraph;
+export default SessionViewsGraph;
