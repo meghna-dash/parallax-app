@@ -41,7 +41,7 @@ form h1 {
 .form-group input {
 	background-color: transparent;
 	border: none;
-	border-bottom: 1px solid var(--input-color);
+	border-bottom: 1px solid black;
 	color: var(--second-color);
 	font-size: 1.25em;
 	padding: 10px 0;
@@ -63,7 +63,7 @@ form h1 {
 
 .form-group input:valid,
 .form-group input:focus {
-	border-bottom-color: var(--main-color);
+	border-bottom-color: black;
 	outline: none;
 }
 
