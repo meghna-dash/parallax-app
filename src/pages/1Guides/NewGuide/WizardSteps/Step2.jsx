@@ -1,7 +1,5 @@
 import React from "react";
 import classnames from "classnames";
-
-// reactstrap components
 import { Row, Col } from "reactstrap";
 
 class Wizard extends React.Component {

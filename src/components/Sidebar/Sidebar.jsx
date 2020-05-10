@@ -1,9 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Nav, Collapse } from "reactstrap";
-// javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
-
 import avatar from "../../assets/img/project.png";
 import logo from "../../assets/img/logo.png";
 import './sidebar.css';
@@ -15,11 +13,8 @@ class Sidebar extends React.Component {
     super(props);
     this.state = this.getCollapseStates(props.routes);
     this.state.projects = props.projects;
-    console.log(props);
   }
 
-  // this creates the intial state of this component based on the collapse routes
-  // that it gets through this.props.routes
   getCollapseStates = routes => {
     let initialState = {};
     routes.map((prop, key) => {
@@ -54,11 +49,10 @@ class Sidebar extends React.Component {
       if (prop.redirect) {
         return null;
       }
-      if (prop.name == "Account" || prop.name == "Projects") {
+      if (prop.name === "Account" || prop.name === "Projects") {
         return null;
       }
       if (prop.collapse) {
-        console.log(prop.name)
         var st = {};
         st[prop["state"]] = !this.state[prop.state];
         return (
@@ -67,7 +61,7 @@ class Sidebar extends React.Component {
             key={key}
           >
             <a
-              href="#pablo"
+              href="/app/projects"
               data-toggle="collapse"
               aria-expanded={this.state[prop.state]}
               onClick={e => {

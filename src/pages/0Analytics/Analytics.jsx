@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import { Card, Col, Row } from 'reactstrap';
 import SessionViewsGraph from './SessionViewsGraph';
 import GuideViewsGraph from './GuideViewsGraph';
 import UserEngagement from './UserEngagement';
 import GuidesTable from '../1Guides/GuidesTable';
-import MostViewedGuide from './MostViewedGuide';
 import './analytics.css';
-
 import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 
@@ -35,8 +32,9 @@ class Sessions extends Component {
         sessions: response.data.getSessions,
         ready: true
       });
-    } catch (error) {
-      console.log('error', error);
+    }
+    catch {
+      // console.log(error);
     }
   }
 

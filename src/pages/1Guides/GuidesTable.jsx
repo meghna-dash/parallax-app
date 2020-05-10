@@ -1,18 +1,11 @@
 import React, { Component } from "react";
 import {
   Button,
-  ButtonGroup,
   Card,
   CardHeader,
   CardBody,
   CardTitle,
-  Label,
-  FormGroup,
-  Input,
   Table,
-  Row,
-  Col,
-  UncontrolledTooltip
 } from "reactstrap";
 import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
@@ -49,7 +42,7 @@ class GuidesTable extends Component {
       })
     }
     catch (error) {
-      console.log('error', error);
+      // console.log('error', error);
     }
   }
 

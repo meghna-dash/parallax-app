@@ -6,18 +6,12 @@ import {
   CardBody,
   CardFooter,
   CardTitle,
-  Row,
-  Col
 } from "reactstrap";
-import { API, graphqlOperation } from 'aws-amplify';
-import * as queries from '../../graphql/queries';
 
 class SessionViewsGraph extends Component {
   constructor(props) {
     super(props);
 
-    const earliest = Date.now() - (7 * 1000 * 60 * 60 * 24);
-    var sessions = props.sessions.filter(s => s.ts >= earliest);
     this.data = {
       labels: this.lastSevenDays(),
       datasets: [

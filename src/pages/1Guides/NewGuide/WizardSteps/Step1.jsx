@@ -1,13 +1,10 @@
 import React from "react";
-import classnames from "classnames";
 import FileUpload from './FileUpload';
 import {
   Input,
   InputGroupAddon,
   InputGroupText,
   InputGroup,
-  Row,
-  Col
 } from "reactstrap";
 
 class Wizard extends React.Component {

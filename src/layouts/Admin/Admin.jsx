@@ -1,12 +1,9 @@
 import React from "react";
-// javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 import { Route, Switch } from "react-router-dom";
-
 import AdminNavbar from "components/Navbars/AdminNavbar.jsx";
 import Footer from "components/Footer/Footer.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
-import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
 import routes from "routes.js";
 import './admin.css';
 import { API, graphqlOperation } from 'aws-amplify';
@@ -85,7 +82,6 @@ class Admin extends React.Component {
   };
 
   async queryForUsersProjects() {
-    console.log("query for projects")
     try {
       const response = await API.graphql(graphqlOperation(queries.getUser,
         {
@@ -93,13 +89,12 @@ class Admin extends React.Component {
           sk: "user"
         }
       ));
-      console.log(response);
       this.setState({
-        projects: response.data.getUser[0].projects.length > 0 ? response.data.getUser[0].projects : null
+        projects: response.data.getUser[0] ? response.data.getUser[0].projects : null
       });
 
       if(this.state.projects) {
-        const currProjectID = response.data.getUser[0].projects[0];
+        const currProjectID = response.data.getUser[0].projects[1] ? response.data.getUser[0].projects[1] : null;
         sessionStorage.setItem("projectID", currProjectID);
 
         const resp = await API.graphql(graphqlOperation(queries.getProject,
@@ -108,16 +103,18 @@ class Admin extends React.Component {
             sk: "project"
           }
         ));
-        const project = resp.data.getProject[0];
-        sessionStorage.setItem("projectName", project.name);
+        const project = resp.data.getProject[0] ? resp.data.getProject[0] : null;
+        if(project) {
+          sessionStorage.setItem("projectName", project.name);
+        }
       }
 
       this.setState({
         loaded: true
       });
     }
-    catch (error) {
-      console.log('error', error);
+    catch {
+      // console.log(error);
     }
   }
 

@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import ReactWizard from "react-bootstrap-wizard";
-import { Col, Modal } from "reactstrap";
+import { Modal } from "reactstrap";
 import Step1 from "./WizardSteps/Step1.jsx";
 import Step2 from "./WizardSteps/Step2.jsx";
 import Step3 from "./WizardSteps/Step3.jsx";
-import { Storage } from 'aws-amplify';
 import { v4 as uuidv4 } from 'uuid';
 import { API, graphqlOperation } from 'aws-amplify';
 import * as mutations from '../../../graphql/mutations';
@@ -37,7 +36,6 @@ class NewGuideModal extends Component {
   }
 
   onFileChange = event => {
-    console.log(event)
     this.setState({
       selectedFile: event.target.files[0]
     })
@@ -63,18 +61,6 @@ class NewGuideModal extends Component {
   }
 
   async putGuidesInDynamo() {
-    console.log("START");
-    console.log({
-      pk: this.state.projectID,
-      sk: "guide_" + this.state.guideID,
-      title: this.state.title,
-      description: this.state.description,
-      routes: "/*",
-      views: 0,
-      path: this.state.bucketURL + this.state.projectID + "/videos/" + this.state.guideID + ".mp4"
-    })
-    console.log("END");
-
     try {
       const response = await API.graphql(graphqlOperation(mutations.putGuides,
         {
@@ -87,16 +73,13 @@ class NewGuideModal extends Component {
           path: this.state.bucketURL + this.state.projectID + "/videos/" + this.state.guideID + ".mp4"
         }
       ))
-      console.log(response.data.putGuides);
     }
     catch (error) {
-      console.log('error', error);
+      // console.log('error', error);
     }
   }
 
   saveFiletoS3 = () => {
-    console.log("file", this.state.selectedFile)
-    console.log(this.state.projectID)
     const videoID = this.state.projectID + "/videos/" + this.state.guideID;
     axios(
       "https://npmvy24qlj.execute-api.us-east-1.amazonaws.com/dev/upload?fileName=" +
@@ -109,11 +92,8 @@ class NewGuideModal extends Component {
         data: this.state.selectedFile,
         headers: { "Content-Type": "multipart/form-data" }
       })
-      .then(res => {
-        console.log("successful", res)
-      })
       .catch(err => {
-        console.log("error", err)
+        // console.log("error", err)
       });
     });
   }

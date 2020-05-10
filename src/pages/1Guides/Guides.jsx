@@ -1,25 +1,17 @@
 import React, { Component } from "react";
 import {
-  Alert,
-  Button,
   Card,
   CardHeader,
   CardTitle,
   CardSubtitle,
   CardBody,
   Col,
-  Form,
-  FormGroup,
-  Input,
-  Modal,
-  ModalBody,
   Row
 } from "reactstrap";
 import GuideCard from "./GuideCard.jsx";
 import NewGuideModal from './NewGuide/NewGuideModal';
 import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
-import * as mutations from '../../graphql/mutations';
 
 class Guides extends Component {
   constructor(props) {
@@ -47,7 +39,7 @@ class Guides extends Component {
       })
     }
     catch (error) {
-      console.log('error', error);
+      // console.log('error', error);
     }
   }
 

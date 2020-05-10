@@ -6,11 +6,9 @@ import {
   CardText,
   CardTitle,
   CardBody,
-  CardFooter,
   Col,
   Modal,
   ModalBody,
-  Row
 } from "reactstrap";
 import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
@@ -55,13 +53,13 @@ class ProjectCard extends Component {
       });
     }
     catch (error) {
-      console.log('error', error);
+      // console.log('error', error);
     }
   }
 
   setActiveProject = async () => {
     try {
-      const response = await API.graphql(graphqlOperation(mutations.updateUser,
+      await API.graphql(graphqlOperation(mutations.updateUser,
         {
           pk: sessionStorage.getItem("userID"),
           sk: "user",
@@ -71,7 +69,7 @@ class ProjectCard extends Component {
       this.refresh();
     }
     catch (error) {
-      console.log('error', error);
+      // console.log('error', error);
     }
   }
 
@@ -98,7 +96,7 @@ class ProjectCard extends Component {
                 {this.state.url}
               </CardText>
               <CardBody>
-              {this.state.id == this.state.currentProject ?
+              {this.state.id === this.state.currentProject ?
                 <Button className="project-card-button" disabled>Current project</Button> :
                 <Button className="project-card-button" onClick={() => this.setActiveProject}>Activate project</Button>
               }

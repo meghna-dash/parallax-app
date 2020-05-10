@@ -1,12 +1,7 @@
 import React, { Component } from "react";
-import Select from "react-select";
-import { FormGroup, Input, Row, Col } from "reactstrap";
+import { Row, Col } from "reactstrap";
 
 class Wizard extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <>

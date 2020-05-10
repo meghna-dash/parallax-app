@@ -1,11 +1,6 @@
-import axios from 'axios';
 import React, { Component } from 'react';
 
 class FileUpload extends Component {
-  constructor() {
-    super();
-  }
-
   onFileChange = event => {
     this.setState({ selectedFile: event.target.files[0] });
   };

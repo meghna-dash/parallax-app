@@ -9,12 +9,8 @@ import {
   CardBody,
   Col,
   Modal,
-  ModalBody,
-  ModalFooter,
-  Row
 } from "reactstrap";
 import { API, graphqlOperation } from 'aws-amplify';
-import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
 import './guides.css';
 
@@ -40,7 +36,6 @@ class GuideCard extends Component {
     this.setState({
       showModal: !this.state.showModal
     });
-    console.log(this.state)
   }
 
   toggleAlert = () => {
@@ -51,7 +46,7 @@ class GuideCard extends Component {
 
   deleteGuide = async () => {
     try {
-      const response = await API.graphql(graphqlOperation(mutations.deleteGuide,
+      await API.graphql(graphqlOperation(mutations.deleteGuide,
         {
           pk: this.state.pk,
           sk: this.state.sk
@@ -60,8 +55,8 @@ class GuideCard extends Component {
       this.toggleModal();
       this.refresh();
     }
-    catch (error) {
-      console.log('error', error);
+    catch {
+      // console.log(error);
     }
   }
 

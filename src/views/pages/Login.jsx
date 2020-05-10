@@ -5,8 +5,6 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
-  Label,
-  FormGroup,
   Form,
   Input,
   InputGroupAddon,
@@ -17,8 +15,6 @@ import {
   Row
 } from "reactstrap";
 import { Auth } from "aws-amplify";
-import { withRouter } from "react-router-dom";
-import { Redirect } from "react-router";
 import './login.css';
 
 class Login extends Component {
@@ -51,16 +47,11 @@ class Login extends Component {
     try {
       await Auth.signIn(this.state.email, this.state.password)
       .then(user => sessionStorage.setItem("userID", user.username))
-      // .then(() => this.setState(() => ({
-      //   toDashboard: true
-      // })))
-      // .then(user => this.props.updateAuthenticationState(true))
       .then(() => this.props.history.push("/app/guides"))
     } catch (error) {
       this.setState({
         message: error.message,
       })
-      console.log(error.message)
     }
   }
 
@@ -73,11 +64,6 @@ class Login extends Component {
   }
 
   render() {
-    // if (this.state.toDashboard === true) {
-    //   console.log("AUTH TRUEE ")
-    //   return <Redirect to='/project/guides'/>
-    // }
-
     return (
       <div className="login-page">
         <Container>

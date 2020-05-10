@@ -6,8 +6,6 @@ import {
   CardBody,
   CardFooter,
   CardTitle,
-  Label,
-  FormGroup,
   Form,
   Input,
   InputGroupAddon,
@@ -58,7 +56,7 @@ class Register extends Component {
     event.preventDefault();
 
     try {
-      const newUser = await Auth.signUp({
+      await Auth.signUp({
         username: this.state.email,
         password: this.state.password,
       })
@@ -69,7 +67,7 @@ class Register extends Component {
       this.setState({
         message: error.message,
       })
-      console.log(error.message);
+      // console.log(error.message);
     }
   }
 
@@ -87,26 +85,24 @@ class Register extends Component {
       .then(user => sessionStorage.setItem("userID", user.username))
       .then(() => this.props.history.push("/app/projects"))
       .then(() => this.putNewUserInDynamo());
-      console.log("Logged in");
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
     }
   }
 
   putNewUserInDynamo = async () => {
-    console.log("PUT NEW USER IN DYNAMO")
     try {
-      const response = await API.graphql(graphqlOperation(mutations.putUser,
+      await API.graphql(graphqlOperation(mutations.putUser,
         {
           pk: sessionStorage.getItem("userID"),
           sk: "user",
-          projects: ["none"],
-          currentProject: "No Projects Created",
+          projects: "none",
+          currentProject: "Projects",
         }
       ))
     }
     catch (error) {
-      console.log('error', error);
+      // console.log('error', error);
     }
   }
 

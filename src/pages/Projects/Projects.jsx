@@ -6,12 +6,9 @@ import {
   CardHeader,
   CardTitle,
   CardSubtitle,
-  CardText,
   CardBody,
   Col,
   Form,
-  FormGroup,
-  Input,
   Modal,
   ModalBody,
   Row
@@ -52,13 +49,13 @@ class Projects extends Component {
         }
       ));
       this.setState({
-        projects: response.data.getUser[0].projects.length > 0 ? response.data.getUser[0].projects : null,
-        currentProject: response.data.getUser[0].currentProject ? response.data.getUser[0].currentProject : null,
+        projects: response.data.getUser[0].projects.length > 0 ? response.data.getUser[0].projects.slice(1) : null,
+        currentProject: response.data.getUser[0] ? response.data.getUser[0].currentProject : null,
         loaded: true
       });
     }
     catch (error) {
-      console.log('error', error);
+      // console.log('error', error);
     }
   }
 
@@ -69,7 +66,7 @@ class Projects extends Component {
   }
 
   createNewProject = async () => {
-    if (!this.state.projects && this.state.loaded) {
+    if (this.state.projects.length <= 1 && this.state.loaded) {
       const id = uuid();
       try {
         const response = await API.graphql(graphqlOperation(mutations.putProject,
@@ -83,7 +80,7 @@ class Projects extends Component {
             ts: Date.now().toString()
           }
         ));
-        const resp = await API.graphql(graphqlOperation(mutations.updateUserProjects,
+        await API.graphql(graphqlOperation(mutations.updateUserProjects,
           {
             pk: sessionStorage.getItem("userID"),
             sk: "user",
@@ -98,7 +95,7 @@ class Projects extends Component {
         this.toggleNewProjectModal();
       }
       catch (error) {
-        console.log('error', error);
+        // console.log('error', error);
       }
     } else {
       this.toggleAlert();
@@ -165,7 +162,7 @@ class Projects extends Component {
           <ModalBody>
             <Row>
               <Col lg="6">
-                <img src={NewProject} />
+                <img src={NewProject} alt="new-project"/>
               </Col>
               <Col lg="6">
                 <h5 style={{ padding: "70px 0", marginBottom: '24px' }}>
@@ -202,8 +199,6 @@ class Projects extends Component {
                   </Form>
               </Col>
             </Row>
-
-
           </ModalBody>
         </Modal>
       </div>
