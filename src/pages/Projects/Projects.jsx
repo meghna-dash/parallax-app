@@ -144,7 +144,7 @@ class Projects extends Component {
                   Create New Project
                 </CardTitle>
                 <CardSubtitle>
-                  Create a new project to add Parallax to your product. This project will serve your entire domain or product.
+                  Create a new project to add Blueriddle to your product. This project will serve your entire domain or product.
                 </CardSubtitle>
               </CardHeader>
               <CardBody/>
@@ -166,7 +166,7 @@ class Projects extends Component {
               </Col>
               <Col lg="6">
                 <h5 style={{ padding: "70px 0", marginBottom: '24px' }}>
-                  Create a new project to add Parallax to your product. This project will serve your entire domain or product.
+                  Create a new project to add Blueriddle to your product. This project will serve your entire domain or product.
                 </h5>
                 <Form style={{ padding: "0px"}}>
                   <div class="form-group">

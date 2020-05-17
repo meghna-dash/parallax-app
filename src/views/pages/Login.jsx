@@ -68,13 +68,13 @@ class Login extends Component {
       <div className="login-page">
         <Container>
           <Row>
-            <Col className="ml-auto mr-auto" lg="4" md="6">
+            <Col className="ml-auto mr-auto" lg="5" md="6">
               <Form action="" className="form" method="">
                 <Card className="card-login">
                   <CardHeader>
                     <CardHeader>
                       <h3 className="header text-center">Welcome back.</h3>
-                      <p className="card-description">
+                      <p className="card-description" style={{ color: 'red', fontWeight: 'bold' }}>
                         {this.state.message}
                       </p>
                     </CardHeader>

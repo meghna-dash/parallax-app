@@ -1,7 +1,7 @@
 {
-  "name": "parallax-app",
+  "name": "blueriddle-app",
   "version": "1.0.0",
-  "description": "Parallax App",
+  "description": "Blueriddle App",
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
@@ -20,7 +20,7 @@
     "reactstrap"
   ],
   "author": "Sidharth Potdar & Meghna Dash",
-  "license": "Parallax App",
+  "license": "Blueriddle App",
   "dependencies": {
     "aws-amplify": "^2.2.0",
     "aws-amplify-react": "^2.5.3",

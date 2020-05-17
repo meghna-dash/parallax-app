@@ -141,7 +141,7 @@ class Sidebar extends React.Component {
       >
         <center>
           <div className="logo">
-            <img src={logo} mode='fit' alt="parallax-logo" width="100%" height="auto"/>
+            <img src={logo} mode='fit' alt="blueriddle-logo" width="100%" height="auto"/>
           </div>
         </center>
 

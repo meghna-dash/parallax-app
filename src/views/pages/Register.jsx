@@ -126,7 +126,7 @@ class Register extends Component {
                 <div className="description">
                   <h5 className="info-title">Stop struggling with unexpected user behavior.</h5>
                   <p className="description">
-                  Users almost never think about your product the way you want them to, which causes significant drops in conversion, retention, and purchases. Parallax helps you avoid this with non-invasive, comprehensive product guides.
+                  Users almost never think about your product the way you want them to, which causes significant drops in conversion, retention, and purchases. Blueriddle helps you avoid this with non-invasive, comprehensive product guides.
                   </p>
                 </div>
               </div>
@@ -137,7 +137,7 @@ class Register extends Component {
                 <div className="description">
                   <h5 className="info-title">Help your users with simple guides.</h5>
                   <p className="description">
-                  Parallax lets you easily upload video guides that teach your users how to use your software. Identify what you want to teach your users, upload guides, and we will handle engaging your user.
+                    Blueriddle lets you easily upload video guides that teach your users how to use your software. Identify what you want to teach your users, upload guides, and we will handle engaging your user.
                   </p>
                 </div>
               </div>
@@ -148,7 +148,7 @@ class Register extends Component {
                 <div className="description">
                   <h5 className="info-title">Bring users closer to that 'aha!' moment.</h5>
                   <p className="description">
-                  Parallax presents your users with video guides. They can select what they want to learn to do from a few options you have determined. Increase conversion, retention, and user satisfaction using Parallax guides.
+                    Blueriddle presents your users with video guides. They can select what they want to learn to do from a few options you have determined. Increase conversion, retention, and user satisfaction using Blueriddle guides.
                   </p>
                 </div>
               </div>
@@ -156,9 +156,9 @@ class Register extends Component {
             <Col className="mr-auto" lg="4" md="6">
               <Card className="card-signup text-center">
                 <CardHeader>
-                  <CardTitle tag="h4">Get started with Parallax.</CardTitle>
+                  <CardTitle tag="h4">Get started with Blueriddle.</CardTitle>
                   <p className="card-description">
-                    Stop losing users to frustrating experiences. Sign up to get early access to Parallax today.
+                    Stop losing users to frustrating experiences. Sign up to get early access to Blueriddle today.
                   </p>
                   <p className="card-description">
                     {this.state.message}
